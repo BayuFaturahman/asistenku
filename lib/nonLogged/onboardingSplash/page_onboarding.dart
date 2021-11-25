@@ -3,6 +3,7 @@ import 'package:asistenku/nonLogged/onboardingSplash/onboarding_data.dart';
 import 'package:asistenku/nonLogged/onboardingSplash/page_start_app.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class PageOnboarding extends StatelessWidget {
   final List<OnbordingData> list = [

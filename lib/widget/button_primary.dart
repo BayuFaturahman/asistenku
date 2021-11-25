@@ -1,3 +1,4 @@
+import 'package:asistenku/shared/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class ButtonPrimary extends StatelessWidget {
@@ -37,7 +38,7 @@ class ButtonPrimary extends StatelessWidget {
         child: ElevatedButton(
             onPressed: onPressed,
             style: ElevatedButton.styleFrom(
-              primary: enable ? color ?? Color(0XFF5296D6) : Colors.black,
+              primary: enable ? color ?? Color(0XFF5296D6) : AppColor.bodyColor.shade500,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(radius ?? 10.0),
               ),

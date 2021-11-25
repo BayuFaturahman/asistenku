@@ -3,17 +3,14 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class InputFormIcon extends StatelessWidget {
-  const InputFormIcon({
+class InputForm extends StatelessWidget {
+  const InputForm({
     Key? key,
-    required this.icon,
     this.hintText,
     this.isPassword,
-    this.size,
-    this.hintTextStyle,
+    this.size, this.hintTextStyle,
   }) : super(key: key);
 
-  final Icon icon;
   final String? hintText;
   final bool? isPassword;
   final double? size;
@@ -48,13 +45,15 @@ class InputFormIcon extends StatelessWidget {
           ),
         ),
         decoration: InputDecoration(
-          contentPadding: const EdgeInsets.symmetric(vertical: 10),
+          contentPadding: const EdgeInsets.symmetric(vertical: 15),
+          prefix: const Text('00'),
           hintText: hintText,
-          hintStyle: hintTextStyle ??
-              const TextStyle(color: Color(0xffE5E5E5), fontSize: 14),
+          hintStyle: hintTextStyle?? const  TextStyle(
+            color: Color(0xffE5E5E5),
+            fontSize: 14,
+          ),
           fillColor: Colors.white,
           filled: true,
-          prefixIcon: icon,
           prefixIconConstraints: const BoxConstraints(
             minWidth: 75,
           ),

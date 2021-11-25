@@ -1,8 +1,6 @@
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class InputPassword extends StatefulWidget {
@@ -11,13 +9,15 @@ class InputPassword extends StatefulWidget {
     required this.icon,
     this.hintText,
     this.isPassword,
-    this.size,
+    this.size, this.hintTextStyle,
   }) : super(key: key);
 
   final Icon icon;
   final String? hintText;
   final bool? isPassword;
   final double? size;
+  final TextStyle? hintTextStyle;
+
 
   @override
   State<InputPassword> createState() => _InputPasswordState();
@@ -57,9 +57,8 @@ class _InputPasswordState extends State<InputPassword> {
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(vertical: 15),
             hintText: widget.hintText,
-            hintStyle: const TextStyle(
-              color: Color(0xffA6B0BD),
-            ),
+            hintStyle: widget.hintTextStyle ??
+                const TextStyle(color: Color(0xffE5E5E5), fontSize: 14),
             fillColor: Colors.white,
             filled: true,
             prefixIcon: widget.icon,

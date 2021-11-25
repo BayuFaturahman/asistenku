@@ -33,37 +33,39 @@ class _OnbordingDataState extends State<OnbordingData> {
         children: <Widget>[
           Image.asset(
             imagePath,
-            width: 250,
-            height: 250,
+            width: 270,
+            height: 270,
           ),
           const SizedBox(
-            height: 12.0,
+            height: 20.0,
           ),
-          Flexible(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Text(
-                title,
-                softWrap: true,
-                textAlign: TextAlign.start,
-                style: TextStyle(fontWeight: FontWeight.w700, fontSize: 24),
-              ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 55.5),
+            child: Row(
+              children: [
+                Text(
+                  title,
+                  softWrap: true,
+                  textAlign: TextAlign.start,
+                  style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 24),
+                ),
+              ],
             ),
           ),
           const SizedBox(
             height: 12.0,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 55.5),
             child: Text(
               desc,
               softWrap: true,
-              textAlign: TextAlign.center,
-              style: TextStyle(fontWeight: FontWeight.w300, fontSize: 14),
+              textAlign: TextAlign.start,
+              style: const TextStyle(fontWeight: FontWeight.w300, fontSize: 14),
             ),
           ),
           const SizedBox(
-            height: 50,
+            height: 30,
           ),
           widget.isButton == 'true'
               ? ButtonPrimary(
@@ -73,7 +75,7 @@ class _OnbordingDataState extends State<OnbordingData> {
                   label: 'Continue',
                   radius: 15,
                   size: 250,
-                  labelStyle: TextStyle(fontSize: 24),
+                  labelStyle:const  TextStyle(fontSize: 21),
                 )
               : const SizedBox()
         ],

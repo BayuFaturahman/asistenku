@@ -64,7 +64,7 @@ class IntroScreenState extends State<IntroScreen> {
             child: Container(),
           ),
           Expanded(
-            flex: 3,
+            flex: 7,
             child: PageView(
               children: widget.onbordingDataList,
               controller: controller,
