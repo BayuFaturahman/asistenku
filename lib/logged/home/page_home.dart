@@ -1,8 +1,11 @@
 import 'package:asistenku/logged/home/controller_home.dart';
+import 'package:asistenku/logged/home/page_all_worker.dart';
 import 'package:asistenku/shared/constants/constants.dart';
+import 'package:asistenku/shared/constants/styles.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 final List<String> imgList = [
   'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
@@ -13,143 +16,307 @@ final List<String> imgList = [
   'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
 ];
 
+List item = [
+  {"icon": "assets/icons/ic_clean.png", "label": "Cleaner"},
+  {"icon": "assets/icons/ic_washing.png", "label": "Washing"},
+  {"icon": "assets/icons/ic_ironing.png", "label": "Ironing"},
+  {'icon': 'assets/icons/ic_load.png', 'label': 'not available'},
+  {'icon': 'assets/icons/ic_load.png', 'label': 'not available'},
+  {'icon': 'assets/icons/ic_load.png', 'label': 'not available'},
+  {'icon': 'assets/icons/ic_load.png', 'label': 'not available'},
+  {'icon': 'assets/icons/ic_all.png', 'label': 'ALL'}
+];
+
 class HomePage extends GetView<ControllerHome> {
-  HomePage({Key? key}) : super(key: key);
+  final double lat;
+  final double long;
+  HomePage(
+    this.lat,
+    this.long, {
+    Key? key,
+  }) : super(key: key);
 
   final CarouselController _controller = CarouselController();
   final ControllerHome cHome = Get.find<ControllerHome>();
+  final Set<Marker> markers = new Set(); //ma
+  Set<Marker> myMarker = {};
 
+  Set<Marker> getmarkers() {
+    LatLng selectedLocation = LatLng(lat, long);
+
+    markers.add(Marker(
+      //add first marker
+      markerId: MarkerId(selectedLocation.toString()),
+      position: selectedLocation, //position of marker
+      infoWindow: const InfoWindow(
+        //popup info
+        title: 'Lokasi Anda',
+        snippet: '',
+      ),
+      icon: BitmapDescriptor.defaultMarker, //Icon for Marker
+    ));
+    return markers;
+  }
 
   final List<Widget> imageSliders = imgList
       .map((item) => Container(
-    width: 350,
-        margin: const EdgeInsets.all(5.0),
-        child: ClipRRect(
-            borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-            child: Stack(
-              children: <Widget>[
-                Image.network(item, fit: BoxFit.cover, width: 1000.0),
-                Positioned(
-                  bottom: 0.0,
-                  left: 0.0,
-                  right: 0.0,
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          Color.fromARGB(200, 0, 0, 0),
-                          Color.fromARGB(0, 0, 0, 0)
+            width: 350,
+            margin: const EdgeInsets.all(5.0),
+            child: ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+                child: Stack(
+                  children: <Widget>[
+                    Image.network(item, fit: BoxFit.cover, width: 1000.0),
+                    Positioned(
+                      bottom: 0.0,
+                      left: 0.0,
+                      right: 0.0,
+                      child: Column(
+                        children: [
+                          Container(
+                            decoration: const BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color.fromARGB(200, 0, 0, 0),
+                                  Color.fromARGB(0, 0, 0, 0)
+                                ],
+                                begin: Alignment.bottomCenter,
+                                end: Alignment.topCenter,
+                              ),
+                            ),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 10.0, horizontal: 20.0),
+                            child: Text(
+                              'No. ${imgList.indexOf(item)} Banner',
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
                         ],
-                        begin: Alignment.bottomCenter,
-                        end: Alignment.topCenter,
                       ),
                     ),
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 10.0, horizontal: 20.0),
-                    child: Text(
-                      'No. ${imgList.indexOf(item)} Banner',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            )),
-      ))
+                  ],
+                )),
+          ))
       .toList();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
-      child: Stack(
+      child: ListView(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
         children: [
-          Image.asset(
-            "assets/images/card_home.png",
-            fit: BoxFit.cover,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 45),
-            child: Row(
+          SizedBox(
+            height: Get.height / 1.2,
+            child: Stack(
               children: [
-                Column(
-                  children: [
-                    Image.asset(
-                      "assets/icons/ic_user.png",
-                      width: IconSizes.xl,
-                    ),
-                  ],
+                Image.asset(
+                  "assets/images/card_home.png",
+                  fit: BoxFit.cover,
                 ),
-                horizontalSpace(10),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Bayu Faturahman",
-                        style: TextStyles.h5.copyWith(
-                          color: AppColor.whiteColor,
-                        )),
-                    Text("Member",
-                        style: TextStyles.body1.copyWith(
-                          color: AppColor.whiteColor,
-                        )),
-                  ],
-                ),
-                const Spacer(),
-                Column(
-                  children: [
-                    Image.asset(
-                      "assets/icons/ic_bell2.png",
-                      width: IconSizes.xl,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 130),
-            child: Column(
-              children: [
-                CarouselSlider(
-                  items: imageSliders,
-                  carouselController: _controller,
-                  options: CarouselOptions(
-                      autoPlay: true,
-                      enlargeCenterPage: true,
-                      aspectRatio: 2.0,
-                      onPageChanged: (index, reason) {
-                        cHome.indicator(index);
-                      }),
-                ),
-                Obx(()=>
-                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: imgList.asMap().entries.map((entry) {
-                      return GestureDetector(
-                        onTap: () => _controller.animateToPage(entry.key),
-                        child: Container(
-                          width: 10.0,
-                          height: 10.0,
-                          margin:
-                              const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: (Theme.of(context).brightness ==
-                                          Brightness.dark
-                                      ? AppColor.whiteColor
-                                      : AppColor.successColor)
-                                  .withOpacity(cHome.indicator.value == entry.key ? 0.9 : 0.4)),
-                        ),
-                      );
-                    }).toList(),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 45),
+                  child: Row(
+                    children: [
+                      Column(
+                        children: [
+                          Image.asset(
+                            "assets/images/profile1.png",
+                            width: IconSizes.xl,
+                          ),
+                        ],
+                      ),
+                      horizontalSpace(10),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Bayu Faturahman",
+                              style: TextStyles.h5.copyWith(
+                                color: AppColor.whiteColor,
+                              )),
+                          Text("Member",
+                              style: TextStyles.body1.copyWith(
+                                color: AppColor.whiteColor,
+                              )),
+                        ],
+                      ),
+                      const Spacer(),
+                      Column(
+                        children: [
+                          Image.asset(
+                            "assets/icons/ic_bell2.png",
+                            width: IconSizes.xl,
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 130),
+                  child: Column(
+                    children: [
+                      CarouselSlider(
+                        items: imageSliders,
+                        carouselController: _controller,
+                        options: CarouselOptions(
+                            autoPlay: true,
+                            enlargeCenterPage: true,
+                            aspectRatio: 2.0,
+                            onPageChanged: (index, reason) {
+                              cHome.indicator(index);
+                            }),
+                      ),
+                      Obx(
+                        () => Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: imgList.asMap().entries.map((entry) {
+                            return GestureDetector(
+                              onTap: () => _controller.animateToPage(entry.key),
+                              child: Container(
+                                width: 10.0,
+                                height: 10.0,
+                                margin: const EdgeInsets.symmetric(
+                                    vertical: 8.0, horizontal: 4.0),
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: (Theme.of(context).brightness ==
+                                                Brightness.dark
+                                            ? AppColor.whiteColor
+                                            : AppColor.successColor)
+                                        .withOpacity(
+                                            cHome.indicator.value == entry.key
+                                                ? 0.9
+                                                : 0.4)),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 370, left: 17, right: 17),
+                  child: InkWell(
+                    onTap: () => Get.to(() => PageAllWorker()),
+                    child: GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 4,
+                        ),
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: item.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Column(
+                            children: [
+                              Container(
+                                height: 60,
+                                width: 60,
+                                decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                            'assets/images/bg_menu.png'))),
+                                child: Image.asset(
+                                  item[index]['icon'],
+                                  width: 10,
+                                  height: 10,
+                                ),
+                              ),
+                              Text(
+                                item[index]['label'],
+                                style: TextStyles.callout1
+                                    .copyWith(color: AppColor.bodyColor[400]),
+                              )
+                            ],
+                          );
+                        }),
+                  ),
+                ),
+
+                // Padding(
+                //   padding: const EdgeInsets.only(top: 300),
+                //   child: Text("Your Location",style: TextStyles.h5,),
+                // )
               ],
             ),
-          )
+          ),
+          verticalSpace(5),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 17.0,
+            ),
+            child: Text(
+              "Your Location",
+              style: TextStyles.h6,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(17.0),
+            child: Container(
+              height: 150,
+              child: GoogleMap(
+                mapType: MapType.normal,
+                markers: getmarkers(),
+                initialCameraPosition: CameraPosition(
+                  target: LatLng(lat, long),
+                  zoom: 10,
+                ),
+              ),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
+            ),
+          ),
+          verticalSpace(5),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 17.0,
+            ),
+            child: Text(
+              "News updates",
+              style: TextStyles.h6,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 8, right: 8),
+            child: Container(
+              height: 180,
+              child: Image.asset(
+                'assets/images/info1.png',
+                fit: BoxFit.fill,
+              ),
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(10)),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 8, right: 8),
+            child: Container(
+              height: 180,
+              child: Image.asset(
+                'assets/images/info2.png',
+                fit: BoxFit.fill,
+              ),
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(10)),
+            ),
+          ),
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: Container(
+          //     height: 150,
+          //     child:Image.asset('assets/images/info2.png',fit: BoxFit.cover,) ,
+          //     decoration:  BoxDecoration(
+          //         borderRadius: BorderRadius.circular(10)
+          //     ),
+          //   ),
+          // ),
+          verticalSpace(50),
         ],
       ),
     ));

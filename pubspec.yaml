@@ -42,7 +42,7 @@ dependencies:
   geolocator: ^7.7.1
   fluttercontactpicker: ^4.5.1
   carousel_slider: ^4.0.0
-
+  flutter_rating_bar: ^4.0.0
 
   intl:
 

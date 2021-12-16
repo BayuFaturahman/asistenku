@@ -1,3 +1,4 @@
+import 'package:asistenku/shared/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -42,7 +43,7 @@ class InputFormIcon extends StatelessWidget {
         obscureText: isPassword ?? false,
         style: GoogleFonts.montserrat(
           textStyle: const TextStyle(
-            fontSize: 20,
+            fontSize: 14,
             fontWeight: FontWeight.w400,
             color: Color(0xff000912),
           ),
@@ -50,6 +51,7 @@ class InputFormIcon extends StatelessWidget {
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.symmetric(vertical: 10),
           hintText: hintText,
+          
           hintStyle: hintTextStyle ??
               const TextStyle(color: Color(0xffE5E5E5), fontSize: 14),
           fillColor: Colors.white,
