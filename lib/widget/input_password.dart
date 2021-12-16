@@ -1,4 +1,5 @@
 
+import 'package:asistenku/shared/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,7 +10,7 @@ class InputPassword extends StatefulWidget {
     required this.icon,
     this.hintText,
     this.isPassword,
-    this.size, this.hintTextStyle,
+    this.size, this.hintTextStyle, this.controller,
   }) : super(key: key);
 
   final Icon icon;
@@ -17,6 +18,8 @@ class InputPassword extends StatefulWidget {
   final bool? isPassword;
   final double? size;
   final TextStyle? hintTextStyle;
+  final TextEditingController? controller;
+
 
 
   @override
@@ -46,10 +49,11 @@ class _InputPasswordState extends State<InputPassword> {
         ),
         margin: const EdgeInsets.only(bottom: 20),
         child: TextField(
+          controller: widget.controller,
           obscureText: showPassword,
           style: GoogleFonts.montserrat(
             textStyle: const TextStyle(
-              fontSize: 20,
+              fontSize: 14,
               fontWeight: FontWeight.w400,
               color: Color(0xff000912),
             ),
@@ -65,15 +69,16 @@ class _InputPasswordState extends State<InputPassword> {
             suffixIcon: showPassword == true
                 ? IconButton(
                     icon: const Icon(
-                      Icons.remove_red_eye,
+                      Icons.remove_red_eye_outlined,
                       color: Colors.grey,
                     ),
                     onPressed: () =>
                         setState(() => showPassword = !showPassword),
                   )
                 : IconButton(
-                    icon: const Icon(
+                    icon:  const Icon(
                       Icons.remove_red_eye,
+                      color: AppColor.primaryColor,
                     ),
                     onPressed: () =>
                         setState(() => showPassword = !showPassword),

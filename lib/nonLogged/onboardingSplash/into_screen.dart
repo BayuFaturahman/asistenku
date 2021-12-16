@@ -56,66 +56,86 @@ class IntroScreenState extends State<IntroScreen> {
     return Container(
       color: Colors.white,
       padding: const EdgeInsets.all(10.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          Expanded(
-            flex: 1,
-            child: Container(),
-          ),
-          Expanded(
-            flex: 7,
-            child: PageView(
-              children: widget.onbordingDataList,
-              controller: controller,
-              onPageChanged: _onPageChanged,
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: <Widget>[
-                TextButton(
-                  child: Text(lastPage ? "" : "Skip",
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16.0)),
-                  onPressed: () => lastPage
-                      ? null
-                      : widget.skipPage(
-                          context,
-                        ),
+      child: Stack(
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Expanded(
+                flex: 1,
+                child: Container(),
+              ),
+              Expanded(
+                flex: 10,
+                child: PageView(
+                  children: widget.onbordingDataList,
+                  controller: controller,
+                  onPageChanged: _onPageChanged,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  child: SizedBox(
-                    child: Row(
-                      children: [
-                        _buildPageIndicator(0),
-                        _buildPageIndicator(1),
-                        _buildPageIndicator(2),
-                      ],
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 40,left: 40,right: 40),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  TextButton(
+                    child: Text(lastPage ? "" : "Skip",
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.normal,
+                            fontSize: 14.0)),
+                    onPressed: () => lastPage
+                        ? null
+                        : widget.skipPage(
+                      context,
                     ),
                   ),
-                ),
-                TextButton(
-                  child: Text(lastPage ? "" : "Next",
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16.0)),
-                  onPressed: () => lastPage
-                      ? widget.skipPage(context)
-                      : controller.nextPage(
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeIn),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: SizedBox(
+                      child: Row(
+                        children: [
+                          _buildPageIndicator(0),
+                          _buildPageIndicator(1),
+                          _buildPageIndicator(2),
+                        ],
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    child:  Container(
+                      width: 50,
+                      height: 50,
+                      decoration:const BoxDecoration(
+                        color:Color(0xFFF8F8F8),
+                          boxShadow:  [
+                            BoxShadow(
+                              color: Color.fromRGBO(82, 150, 214, 0.11),
+                              blurRadius: 7,
+                              spreadRadius: 0,
+                              offset: Offset(4, 0), // Shadow position
+                            ),
+                          ],
+                        shape: BoxShape.circle
+                      ),
+                      child:const  Icon(Icons.arrow_forward),
+                    ),
+                    onPressed: () => lastPage
+                        ? widget.skipPage(context)
+                        : controller.nextPage(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeIn),
+                  ),
+                ],
+              ),
             ),
           ),
+
         ],
       ),
     );

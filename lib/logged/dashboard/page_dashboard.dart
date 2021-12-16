@@ -12,7 +12,9 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class DashboardPage extends StatefulWidget {
-  const DashboardPage({Key? key}) : super(key: key);
+  final double lat;
+  final double long;
+  const DashboardPage({Key? key, required this.lat, required this.long}) : super(key: key);
 
 
   @override
@@ -23,21 +25,12 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   final ControllerDashboard cDashboard = Get.find<ControllerDashboard>();
 
-  double myLat = -6.905977;
-  double myLong = 107.613144;
+
 
   @override
   void initState() {
     super.initState();
-    _getLocation();
   }
-
-  void _getLocation() async {
-      var position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.best);
-      myLat = position.latitude;
-      myLong = position.longitude;
-      }
 
 
 
@@ -51,7 +44,7 @@ class _DashboardPageState extends State<DashboardPage> {
             child: IndexedStack(
               index: controller.tabIndex.value,
               children: [
-                HomePage(myLat,myLong),
+                HomePage(widget.lat,widget.long),
                 NewsPage(),
                 AlertsPage(),
                 AccountPage(),

@@ -9,21 +9,21 @@ class PageOnboarding extends StatelessWidget {
   final List<OnbordingData> list = [
     OnbordingData(
       imagePath: "assets/ilustrasi/ilustrasi_1.png",
-      title: "Cleaner",
+      title: "Asistenku",
       desc:
-      "Cleaner is one of the features of Assistenku This feature provides a full house cleaning service, to find out more about the features of Assistenku , please continue",
+      "Hello, Asistenku adalah aplikasi serbaguna yang dapat membantu anda, dan sangat terjangkau",
     ),
     OnbordingData(
       imagePath: "assets/ilustrasi/ilustrasi_2.png",
-      title: "Ironing",
+      title: "Pekerjaan rumah anda",
       desc:
-      "Iron is one of the features of the Assistant This feature provides services for ironing your clothes, to find out more about the features of Assistenku , please continue",
+      "Dapat dengan mudah mencari service layanan pekerjaan rumah anda dengan efisien&efektif",
     ),
     OnbordingData(
       imagePath: "assets/ilustrasi/ilustrasi_3.png",
-      title: "Washing",
+      title: "Worker Berpengalaman",
       desc:
-      "Washing is one of the features of the Assistant This feature provides laundry services, to find out more about the My Assistant feature, please continue",
+      "Kami sudah menyeleksi para worker dengan sedemikian mungkin, untuk kenyamanan anda",
       isButton: 'true',
     ),
   ];

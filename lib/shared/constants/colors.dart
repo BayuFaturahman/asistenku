@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppColor {
   //BRANDCOLOR
 
-  static const MaterialColor primaryColor = MaterialColor(
+  static const MaterialColor orangePrimary = MaterialColor(
     _orangePrimaryValue,
     <int, Color>{
       50: Color(0xFFFFF0E5),
@@ -18,6 +18,22 @@ class AppColor {
     },
   );
   static const int _orangePrimaryValue = 0xFFFF6900;
+
+  static const MaterialColor primaryColor = MaterialColor(
+    _primaryColorValue,
+    <int, Color>{
+      50: Color(0xFFD7DEE4),
+      100: Color(0xFF9BBDDD),
+      200: Color(0xFF9BBDDD),
+      300: Color(0xFF70A6D9),
+      400: Color(0xFF5296D6),
+      500: Color(_primaryColorValue),
+      // 600: Color(0xFF8A0F14),
+      // 700: Color(0xFF4F090C),
+      // 800: Color(0xFF130203),
+    },
+  );
+  static const int _primaryColorValue = 0xFF5296D6;
 
   static const MaterialColor secondColor = MaterialColor(
     _secondColorValue,

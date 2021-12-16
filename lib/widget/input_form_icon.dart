@@ -12,6 +12,8 @@ class InputFormIcon extends StatelessWidget {
     this.isPassword,
     this.size,
     this.hintTextStyle,
+    this.controller,
+    this.validate,
   }) : super(key: key);
 
   final Icon icon;
@@ -19,6 +21,12 @@ class InputFormIcon extends StatelessWidget {
   final bool? isPassword;
   final double? size;
   final TextStyle? hintTextStyle;
+  final TextEditingController? controller;
+  final String? Function(String?)? validate;
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +47,21 @@ class InputFormIcon extends StatelessWidget {
         ],
       ),
       margin: const EdgeInsets.only(bottom: 20),
-      child: TextField(
+      child: TextFormField(
         obscureText: isPassword ?? false,
+        controller: controller,
+        validator: validate ??
+                (value) {
+          if(value == null){
+            return 'Data isian harus di isi!';
+          }
+              // if (!isValidPassword(password: value.toString())) {
+              //   return '- Password minimal 8 karakter\n' +
+              //       '- Diawali huruf kapital\n' +
+              //       '- Terdiri dari huruf besar, huruf kecil, angka dan symbol (!@#\$%^&*(),.?":{}|<>])';
+              // }
+            },
+
         style: GoogleFonts.montserrat(
           textStyle: const TextStyle(
             fontSize: 14,

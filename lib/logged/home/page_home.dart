@@ -149,9 +149,14 @@ class HomePage extends GetView<ControllerHome> {
                       const Spacer(),
                       Column(
                         children: [
-                          Image.asset(
-                            "assets/icons/ic_bell2.png",
-                            width: IconSizes.xl,
+                          InkWell(
+                            onTap:(){
+        Get.back();
+      },
+                            child: Image.asset(
+                              "assets/icons/ic_bell2.png",
+                              width: IconSizes.xl,
+                            ),
                           ),
                         ],
                       ),
@@ -266,7 +271,7 @@ class HomePage extends GetView<ControllerHome> {
                 markers: getmarkers(),
                 initialCameraPosition: CameraPosition(
                   target: LatLng(lat, long),
-                  zoom: 10,
+                  zoom: 19,
                 ),
               ),
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
