@@ -2,14 +2,13 @@ import 'dart:async';
 import 'package:asistenku/widget/pages/location_maps/page_location_search.dart';
 import 'package:asistenku/shared/constants/constants.dart';
 import 'package:asistenku/widget/button_primary.dart';
-import 'package:asistenku/widget/inpu_primary.dart';
+import 'package:asistenku/widget/input/inpu_primary.dart';
 import 'package:asistenku/widget/pages/page_decoration_top.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
 
 class PageMap extends StatefulWidget {
   final bool isChange;
@@ -37,12 +36,12 @@ class _PageMapState extends State<PageMap> {
     _showModal = show;
     if (_showModal) {
       _bottomSheetController = _scaffoldKey.currentState!.showBottomSheet(
-            (_) => Container(
+        (_) => Container(
           constraints: BoxConstraints(
               maxHeight: Get.height * 0.4, minHeight: Get.height * 0.2),
           width: Get.width,
           padding:
-          EdgeInsets.symmetric(vertical: Insets.sm, horizontal: Insets.xxl),
+              EdgeInsets.symmetric(vertical: Insets.sm, horizontal: Insets.xxl),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -53,13 +52,17 @@ class _PageMapState extends State<PageMap> {
                 padding: EdgeInsets.symmetric(horizontal: Insets.lg),
                 child: Row(
                   children: [
-                  Icon(Icons.location_on,size: IconSizes.sm,color: Colors.green,),
+                    Icon(
+                      Icons.location_on,
+                      size: IconSizes.sm,
+                      color: Colors.green,
+                    ),
                     horizontalSpace(Insets.sm),
                     Expanded(
                         child: Text(
-                          tmp,
-                          style: TextStyles.small1,
-                        )),
+                      tmp,
+                      style: TextStyles.small1,
+                    )),
                   ],
                 ),
               ),
@@ -113,7 +116,7 @@ class _PageMapState extends State<PageMap> {
   Future<void> _setAddressFromMap(LatLng pos) async {
     try {
       List<Placemark> placemarks =
-      await placemarkFromCoordinates(pos.latitude, pos.longitude);
+          await placemarkFromCoordinates(pos.latitude, pos.longitude);
       Map<String, dynamic> lokasi = placemarks[0].toJson();
       for (var item in placemarks) {
         if (lokasi['postalCode'].isEmpty) {
@@ -226,12 +229,15 @@ class _PageMapState extends State<PageMap> {
             _getSearchLngLat();
           },
           child: InputPrimary(
-            onChange: (v) {},
-            controller: searchC,
-            hintText: "Cari nama jalan, gedung, dll",
-            enable: false,
-            prefixIcon: Icon(Icons.location_on,color: Colors.green,size: IconSizes.sm,)
-          ),
+              onChange: (v) {},
+              controller: searchC,
+              hintText: "Cari nama jalan, gedung, dll",
+              enable: false,
+              prefixIcon: Icon(
+                Icons.location_on,
+                color: Colors.green,
+                size: IconSizes.sm,
+              )),
         ),
       ),
     );

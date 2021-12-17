@@ -2,34 +2,33 @@ import 'package:asistenku/widget/card/card_bottom_sheet.dart';
 import 'package:asistenku/shared/constants/colors.dart';
 import 'package:asistenku/shared/constants/styles.dart';
 import 'package:asistenku/widget/button_primary.dart';
-import 'package:asistenku/widget/inpu_primary.dart';
-import 'package:asistenku/widget/input_form.dart';
+import 'package:asistenku/widget/input/inpu_primary.dart';
+import 'package:asistenku/widget/input/input_form.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttercontactpicker/fluttercontactpicker.dart';
 import 'package:get/get.dart';
-
 
 class BottomSheetLocation {
   final BuildContext context;
 
   BottomSheetLocation(
       {required this.context,
-        // required this.getxcontroller,
-        required this.isOrigin,
-        required this.onConfirm,
-        this.location = ""});
+      // required this.getxcontroller,
+      required this.isOrigin,
+      required this.onConfirm,
+      this.location = ""});
 
   final bool isOrigin;
   final String location;
   // final ControllerCourier getxcontroller;
   final Function(
-      String, //location,
-      String, //locationDetail,
-      bool, //asSender
-      String, //name,
-      String, //phoneNumber,
-      String, //emailAddress,
-      ) onConfirm;
+    String, //location,
+    String, //locationDetail,
+    bool, //asSender
+    String, //name,
+    String, //phoneNumber,
+    String, //emailAddress,
+  ) onConfirm;
   TextEditingController detailC = TextEditingController();
   TextEditingController namaC = TextEditingController();
   TextEditingController noHpC = TextEditingController();
@@ -113,14 +112,13 @@ class BottomSheetLocation {
                   controller: detailC,
                 ),
                 const Divider(),
-                 ButtonPrimary(
+                ButtonPrimary(
                   label: "Continue",
                   onPressed: () {
                     if (isValidAdress) {
                       // _onNext(setState);
                       Get.back();
                       Get.back();
-
                     }
                   },
                   enable: isValidAdress,

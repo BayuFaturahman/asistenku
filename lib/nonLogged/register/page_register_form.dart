@@ -5,9 +5,9 @@ import 'package:asistenku/widget/pages/location_maps/controller_maps.dart';
 import 'package:asistenku/widget/pages/location_maps/page_location.dart';
 import 'package:asistenku/widget/pages/location_maps/page_location.dart';
 import 'package:asistenku/widget/button_primary.dart';
-import 'package:asistenku/widget/input_form.dart';
-import 'package:asistenku/widget/input_form_icon.dart';
-import 'package:asistenku/widget/input_password.dart';
+import 'package:asistenku/widget/input/input_form.dart';
+import 'package:asistenku/widget/input/input_form_icon.dart';
+import 'package:asistenku/widget/input/input_password.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,7 +17,8 @@ class PageRegisterForm extends StatefulWidget {
   final String title;
   final int type;
 
-  const PageRegisterForm({Key? key, required this.title, required this.type}) : super(key: key);
+  const PageRegisterForm({Key? key, required this.title, required this.type})
+      : super(key: key);
 
   @override
   PageRegisterFormState createState() => PageRegisterFormState();
@@ -30,7 +31,6 @@ class PageRegisterFormState extends State<PageRegisterForm> {
   DateTime selectedDate = DateTime.now();
   final ControllerMaps cMaps = Get.find<ControllerMaps>();
   final ControllerRegister cRegister = Get.find<ControllerRegister>();
-
 
   Color getColor(Set<MaterialState> states) {
     const Set<MaterialState> interactiveStates = <MaterialState>{
@@ -110,13 +110,13 @@ class PageRegisterFormState extends State<PageRegisterForm> {
               const SizedBox(
                 height: 30,
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 17.0),
-                child: InputForm(
-                  isPassword: false,
-                  hintText: 'Fullname',
-                ),
-              ),
+              // const Padding(
+              //   padding: EdgeInsets.symmetric(horizontal: 17.0),
+              //   child: InputForm(
+              //     isPassword: false,
+              //     hintText: 'Fullname',
+              //   ),
+              // ),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 17.0),
                 child: InputFormIcon(
@@ -199,9 +199,9 @@ class PageRegisterFormState extends State<PageRegisterForm> {
                 height: 20,
               ),
               const Padding(
-               padding:  EdgeInsets.symmetric(horizontal: 20),
-               child:  Text("Place, and date of birth"),
-             ),
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Text("Place, and date of birth"),
+              ),
               const SizedBox(
                 height: 10,
               ),
@@ -227,13 +227,15 @@ class PageRegisterFormState extends State<PageRegisterForm> {
                           Text(
                             DateFormat.d().format(selectedDate).toString() +
                                 ' ' +
-                                DateFormat.MMM().format(selectedDate).toString() +
+                                DateFormat.MMM()
+                                    .format(selectedDate)
+                                    .toString() +
                                 ',' +
                                 ' ' +
                                 DateFormat.y().format(selectedDate).toString(),
-                            style: const TextStyle(color: Colors.grey,fontSize: 14),
+                            style: const TextStyle(
+                                color: Colors.grey, fontSize: 14),
                           ),
-
                         ],
                       ),
                     ),
@@ -244,7 +246,7 @@ class PageRegisterFormState extends State<PageRegisterForm> {
                 height: 20,
               ),
               GestureDetector(
-                onTap: () => Get.to(()=>const PageLocation()),
+                onTap: () => Get.to(() => const PageLocation()),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 17),
                   child: Container(
@@ -258,21 +260,27 @@ class PageRegisterFormState extends State<PageRegisterForm> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Obx(()=>
-                            Row(
+                          Obx(
+                            () => Row(
                               children: [
-                                const Icon(Icons.location_on, color: Colors.grey),
-                                const SizedBox(width: 20,),
-                                 Text(
-                                  cMaps.originAddress.value,
-                                  style:  const TextStyle(color: Colors.grey,fontSize: 14),
+                                const Icon(Icons.location_on,
+                                    color: Colors.grey),
+                                const SizedBox(
+                                  width: 20,
                                 ),
-
+                                Text(
+                                  cMaps.originAddress.value,
+                                  style: const TextStyle(
+                                      color: Colors.grey, fontSize: 14),
+                                ),
                               ],
                             ),
                           ),
-                          const Icon(Icons.arrow_forward_ios, color: Colors.grey,size: 20,),
-
+                          const Icon(
+                            Icons.arrow_forward_ios,
+                            color: Colors.grey,
+                            size: 20,
+                          ),
                         ],
                       ),
                     ),
@@ -280,58 +288,54 @@ class PageRegisterFormState extends State<PageRegisterForm> {
                 ),
               ),
               widget.type == 2
-                  ?  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 17),
-                    child: ListTile(
-                title: const Text(
-                    "Are you from an institution/foundation ?",
-                    style: TextStyle(fontSize: 14),
-                ),
-                leading: Checkbox(
-                    checkColor: Colors.white,
-                    fillColor: MaterialStateProperty.resolveWith(getColor),
-                    value: isChecked,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        isChecked = value!;
-                        print("val :" +isChecked.toString());
-                        if(isChecked == true){
-                          cRegister.insitution(true);
-                        }
-                        if(isChecked == false){
-                          cRegister.insitution(false);
-                        }
-                      });
-                    },
-                )
-              ),
-                  )
-                  :verticalSpace(0),
-              Obx(()=>
-                  cRegister.insitution.value == true
-                  ?     const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 17.0),
-                    child: InputForm(
-                      isPassword: false,
-                      hintText: 'Name your Foundation',
-                    ),
-                  )
-                      :verticalSpace(0)
-              ),
-
+                  ? Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 17),
+                      child: ListTile(
+                          title: const Text(
+                            "Are you from an institution/foundation ?",
+                            style: TextStyle(fontSize: 14),
+                          ),
+                          leading: Checkbox(
+                            checkColor: Colors.white,
+                            fillColor:
+                                MaterialStateProperty.resolveWith(getColor),
+                            value: isChecked,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                isChecked = value!;
+                                print("val :" + isChecked.toString());
+                                if (isChecked == true) {
+                                  cRegister.insitution(true);
+                                }
+                                if (isChecked == false) {
+                                  cRegister.insitution(false);
+                                }
+                              });
+                            },
+                          )),
+                    )
+                  : verticalSpace(0),
+              // Obx(() => cRegister.insitution.value == true
+              //     ? const Padding(
+              //         padding: EdgeInsets.symmetric(horizontal: 17.0),
+              //         child: InputForm(
+              //           isPassword: false,
+              //           hintText: 'Name your Foundation',
+              //         ),
+              //       )
+              //     : verticalSpace(0)),
               Padding(
                 padding:
-                const EdgeInsets.symmetric(vertical: 20, horizontal:  45),
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 45),
                 child: ButtonPrimary(
                   onPressed: () => Get.offAll(() => PageOnboarding()),
                   height: 60,
                   radius: 15.0,
                   label: 'Next',
-                  labelStyle:
-                  const TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+                  labelStyle: const TextStyle(
+                      fontSize: 21, fontWeight: FontWeight.bold),
                 ),
               ),
-
               const SizedBox(
                 height: 50,
               ),

@@ -1,9 +1,9 @@
 class AppAssets {
-
   //ilustrasi
   static const ilustrasi1 = 'assets/ilustrasi/ilustrasi_1.png';
   static const ilustrasi2 = 'assets/ilustrasi/ilustrasi_2.png';
   static const ilustrasi3 = 'assets/ilustrasi/ilustrasi_3.png';
+  static const ilustrasiHp = 'assets/ilustrasi/ilustrasi_hp.png';
 
   //logo
   static const logoHand = 'assets/logo/hands.png';
@@ -14,8 +14,9 @@ class AppAssets {
   static const imageCard = 'assets/images/bg_card.png';
   static const imageHeader = 'assets/images/bg_header.png';
 
- //icon
+  //icon
   static const icUser = 'assets/icons/ic_user.png';
   static const icWorker = 'assets/icons/ic_worker.png';
-
+  static const icHp = 'assets/icons/ic_hp.png';
+  static const icEmail = 'assets/icons/ic_email.png';
 }

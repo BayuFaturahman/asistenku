@@ -2,7 +2,7 @@ import 'package:asistenku/logged/home/page_detail_order.dart';
 import 'package:asistenku/shared/constants/colors.dart';
 import 'package:asistenku/shared/constants/constants.dart';
 import 'package:asistenku/widget/button_primary.dart';
-import 'package:asistenku/widget/input_form_icon.dart';
+import 'package:asistenku/widget/input/input_form.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';

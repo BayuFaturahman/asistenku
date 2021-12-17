@@ -1,4 +1,3 @@
-
 import 'package:asistenku/shared/constants/colors.dart';
 import 'package:asistenku/shared/constants/styles.dart';
 import 'package:flutter/material.dart';
@@ -49,14 +48,14 @@ class _InputPrimaryState extends State<InputPrimary> {
         children: [
           widget.label != ''
               ? Container(
-            margin: EdgeInsets.only(
-              bottom: Insets.xs,
-            ),
-            child: Text(
-              widget.label,
-              style: TextStyles.small1,
-            ),
-          )
+                  margin: EdgeInsets.only(
+                    bottom: Insets.xs,
+                  ),
+                  child: Text(
+                    widget.label,
+                    style: TextStyles.body2,
+                  ),
+                )
               : verticalSpace(0),
           TextFormField(
             enabled: widget.enable,
@@ -70,11 +69,10 @@ class _InputPrimaryState extends State<InputPrimary> {
             inputFormatters: widget.inputFormatters,
             textCapitalization: widget.textCapitalization,
             validator: widget.validate,
-            style: TextStyles.body2,
+            style: TextStyles.body1,
             decoration: inputDecoration(
                 hintText: widget.hintText,
                 prefixIcon: widget.prefixIcon,
-
                 suffixIcon: widget.suffixIcon),
           ),
         ],

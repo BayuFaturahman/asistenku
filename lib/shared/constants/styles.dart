@@ -40,7 +40,7 @@ InputDecoration inputDecoration(
   return InputDecoration(
       isDense: true,
       filled: true,
-      fillColor: AppColor.bodyColor.shade100,
+      fillColor: AppColor.whiteColor,
       contentPadding:
           EdgeInsets.symmetric(horizontal: Insets.med, vertical: Insets.med),
       hintText: hintText,
@@ -52,11 +52,11 @@ InputDecoration inputDecoration(
       errorMaxLines: 5,
       prefixIcon: prefixIcon,
       prefixIconConstraints:
-          BoxConstraints(minHeight: Sizes.lg, minWidth: Sizes.lg),
+          BoxConstraints(minHeight: Sizes.lg, minWidth: Sizes.xl),
       suffixIconConstraints:
           BoxConstraints(minHeight: Sizes.lg, minWidth: Sizes.lg),
       suffixIcon: suffixIcon,
-      hintStyle: TextStyles.body2.copyWith(color: AppColor.bodyColor.shade300));
+      hintStyle: TextStyles.body1.copyWith(color: AppColor.bodyColor.shade500));
 }
 
 Widget verticalSpace(double v) {

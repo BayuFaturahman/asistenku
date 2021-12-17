@@ -1,7 +1,7 @@
 import 'package:asistenku/shared/constants/colors.dart';
 import 'package:asistenku/shared/constants/constants.dart';
 import 'package:asistenku/widget/button_primary.dart';
-import 'package:asistenku/widget/input_form_icon.dart';
+import 'package:asistenku/widget/input/input_form_icon.dart';
 import 'package:asistenku/widget/pages/location_maps/controller_maps.dart';
 import 'package:asistenku/widget/pages/location_maps/page_location.dart';
 import 'package:flutter/cupertino.dart';

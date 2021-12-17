@@ -4,14 +4,13 @@ import 'package:asistenku/nonLogged/register/controller_register.dart';
 import 'package:asistenku/shared/constants/constants.dart';
 import 'package:asistenku/shared/constants/styles.dart';
 import 'package:asistenku/widget/button_icon_horizontal.dart';
-import 'package:asistenku/widget/inpu_primary.dart';
+import 'package:asistenku/widget/input/inpu_primary.dart';
 import 'package:asistenku/widget/pages/location_maps/controller_maps.dart';
 import 'package:asistenku/widget/pages/page_decoration_top.dart';
 import 'package:asistenku/widget/pages/page_maps.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
-
 
 class PageCourierSearch extends StatefulWidget {
   final String? title;
@@ -32,12 +31,12 @@ class _PageCourierSearchState extends State<PageCourierSearch> {
   Timer? t;
 
   void loadingOn() => setState(() {
-    loading = true;
-  });
+        loading = true;
+      });
 
   void loadingOff() => setState(() {
-    loading = false;
-  });
+        loading = false;
+      });
 
   @override
   void dispose() {
@@ -56,8 +55,8 @@ class _PageCourierSearchState extends State<PageCourierSearch> {
       try {
         print(_searchC.text);
         final locations =
-        await locationFromAddress(_searchC.text, localeIdentifier: "id_ID")
-            .then((value) async {
+            await locationFromAddress(_searchC.text, localeIdentifier: "id_ID")
+                .then((value) async {
           print("value : " + value.toString());
           if (value.isNotEmpty) {
             for (var i = 0; i < value.length; i++) {
@@ -125,8 +124,8 @@ class _PageCourierSearchState extends State<PageCourierSearch> {
                   controller: _searchC,
                   hintText: "Cari nama jalan, gedung, dll",
                   label: 'Your Location',
-                  prefixIcon:  Icon(Icons.location_on,color: Colors.blueAccent,size:IconSizes.sm),
-
+                  prefixIcon: Icon(Icons.location_on,
+                      color: Colors.blueAccent, size: IconSizes.sm),
                 ),
               ),
               Padding(
@@ -185,59 +184,59 @@ class _PageCourierSearchState extends State<PageCourierSearch> {
   Widget buildPredictions() {
     return loading
         ? const Center(
-      child: CircularProgressIndicator(),
-    )
+            child: CircularProgressIndicator(),
+          )
         : Column(
-      children: predictions
-          .map((e) => Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: Insets.xl),
-            child: CardSavedAdress(
-                label: "${e['street']}",
-                adress:
-                "${e['subLocality']}  ${e['locality']}  ${e['subAdministrativeArea']} ${e['postalCode']} ${e['administrativeArea']}",
-                onTap: () {
-                  if (e['locality'].isNotEmpty) {
-                    print(cRegister.isOrigin.value.toString());
-                    if (cRegister.isOrigin.value) {
-                      cRegister.originAddress.value = e['street'];
-                      cRegister.originKecamatan.value =
-                      e['locality'];
-                      cRegister.originKelurahan.value =
-                      e['subLocality'];
-                      cRegister.originKota.value =
-                      e['subAdministrativeArea'];
-                      cRegister.originKodePos.value =
-                      e['postalCode'];
-                      cRegister.originProvinsi.value =
-                      e['administrativeArea'];
-                      cRegister.originLatitude.value =
-                      e['latitude'];
-                      cRegister.originLongitude.value =
-                      e['longitude'];
-                    }
-                    print("TESS 1" + e['postalCode']);
-                    Get.back(result: {
-                      "latitude": e['latitude'],
-                      "longitude": e['longitude']
-                    });
-                  } else {
-                    Get.back();
-                  }
-                }),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: Insets.xl),
-            child: Divider(
-              height: Insets.xxl,
-            ),
-          ),
-        ],
-      ))
-          .toList(),
-    );
+            children: predictions
+                .map((e) => Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: Insets.xl),
+                          child: CardSavedAdress(
+                              label: "${e['street']}",
+                              adress:
+                                  "${e['subLocality']}  ${e['locality']}  ${e['subAdministrativeArea']} ${e['postalCode']} ${e['administrativeArea']}",
+                              onTap: () {
+                                if (e['locality'].isNotEmpty) {
+                                  print(cRegister.isOrigin.value.toString());
+                                  if (cRegister.isOrigin.value) {
+                                    cRegister.originAddress.value = e['street'];
+                                    cRegister.originKecamatan.value =
+                                        e['locality'];
+                                    cRegister.originKelurahan.value =
+                                        e['subLocality'];
+                                    cRegister.originKota.value =
+                                        e['subAdministrativeArea'];
+                                    cRegister.originKodePos.value =
+                                        e['postalCode'];
+                                    cRegister.originProvinsi.value =
+                                        e['administrativeArea'];
+                                    cRegister.originLatitude.value =
+                                        e['latitude'];
+                                    cRegister.originLongitude.value =
+                                        e['longitude'];
+                                  }
+                                  print("TESS 1" + e['postalCode']);
+                                  Get.back(result: {
+                                    "latitude": e['latitude'],
+                                    "longitude": e['longitude']
+                                  });
+                                } else {
+                                  Get.back();
+                                }
+                              }),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: Insets.xl),
+                          child: Divider(
+                            height: Insets.xxl,
+                          ),
+                        ),
+                      ],
+                    ))
+                .toList(),
+          );
   }
 
   Column savedAdress() {
@@ -251,13 +250,13 @@ class _PageCourierSearchState extends State<PageCourierSearch> {
                 if (cRegister.isOrigin.value) {
                   cRegister.originLabel.value = "Rumah";
                   cRegister.originAddress.value =
-                  "Komplek Bumi Sukagalih Permai B1 no.44, Sangkanhurip, Kec. Katapang, Bandung, Jawa Barat 40921";
+                      "Komplek Bumi Sukagalih Permai B1 no.44, Sangkanhurip, Kec. Katapang, Bandung, Jawa Barat 40921";
                 }
                 Get.back();
               },
               label: "Rumah",
               adress:
-              "Komplek Bumi Sukagalih Permai B1 no.44, Sangkanhurip, Kec. Katapang, Bandung, Jawa Barat 40921"),
+                  "Komplek Bumi Sukagalih Permai B1 no.44, Sangkanhurip, Kec. Katapang, Bandung, Jawa Barat 40921"),
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: Insets.xl),
@@ -272,13 +271,13 @@ class _PageCourierSearchState extends State<PageCourierSearch> {
                 if (cRegister.isOrigin.value) {
                   cRegister.originLabel.value = "Mamah";
                   cRegister.originAddress.value =
-                  "Komplek Cingcin Permata Indah Blok G 216B, Cingcin, Kec. Katapang, Bandung, Jawa Barat 40915";
+                      "Komplek Cingcin Permata Indah Blok G 216B, Cingcin, Kec. Katapang, Bandung, Jawa Barat 40915";
                 }
                 Get.back();
               },
               label: "Mamah",
               adress:
-              "Komplek Cingcin Permata Indah Blok G 216B, Cingcin, Kec. Katapang, Bandung, Jawa Barat 40915"),
+                  "Komplek Cingcin Permata Indah Blok G 216B, Cingcin, Kec. Katapang, Bandung, Jawa Barat 40915"),
         ),
       ],
     );
@@ -309,21 +308,21 @@ class CardSavedAdress extends StatelessWidget {
           horizontalSpace(4),
           Expanded(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  label == null
-                      ? const SizedBox()
-                      : Text(
-                    label!,
-                    style: TextStyles.small1
-                        .copyWith(fontWeight: FontWeight.w700),
-                  ),
-                  Text(
-                    adress.trimLeft(),
-                    style: TextStyles.small1,
-                  ),
-                ],
-              ))
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              label == null
+                  ? const SizedBox()
+                  : Text(
+                      label!,
+                      style: TextStyles.small1
+                          .copyWith(fontWeight: FontWeight.w700),
+                    ),
+              Text(
+                adress.trimLeft(),
+                style: TextStyles.small1,
+              ),
+            ],
+          ))
         ],
       ),
     );

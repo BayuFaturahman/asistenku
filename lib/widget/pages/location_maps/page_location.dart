@@ -6,7 +6,7 @@ import 'package:asistenku/widget/pages/location_maps/controller_maps.dart';
 import 'package:asistenku/widget/pages/location_maps/page_location_search.dart';
 import 'package:asistenku/shared/constants/colors.dart';
 import 'package:asistenku/shared/constants/constants.dart';
-import 'package:asistenku/widget/inpu_primary.dart';
+import 'package:asistenku/widget/input/inpu_primary.dart';
 import 'package:asistenku/widget/pages/page_decoration_top.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
@@ -14,11 +14,9 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-
 class PageLocation extends StatefulWidget {
   final bool isChange;
-  const PageLocation({Key? key, this.isChange = false})
-      : super(key: key);
+  const PageLocation({Key? key, this.isChange = false}) : super(key: key);
 
   @override
   State<PageLocation> createState() => _PageLocationState();
@@ -41,38 +39,37 @@ class _PageLocationState extends State<PageLocation> {
     _showModal = show;
     if (_showModal) {
       _bottomSheetController = _scaffoldKey.currentState!.showBottomSheet(
-            (_) => BottomSheetLocation(
-            onConfirm: (location, detailLocation, asSender, name,
-                phoneNumber, emailAddress) {
-              print(location);
-              print(detailLocation);
-              print(asSender.toString());
-              print(name);
-              print(phoneNumber);
-              print(emailAddress);
+        (_) => BottomSheetLocation(
+                onConfirm: (location, detailLocation, asSender, name,
+                    phoneNumber, emailAddress) {
+                  print(location);
+                  print(detailLocation);
+                  print(asSender.toString());
+                  print(name);
+                  print(phoneNumber);
+                  print(emailAddress);
 
-              cRegister.originName.value = name;
-              cRegister.originAddress.value = detailLocation;
-              // _courierC.originDetailAddress.value = detailLocation;
-              // _courierC.originAsSender.value = asSender;
-              cRegister.originPhone.value = phoneNumber;
-              cRegister.originEmailAddress.value = emailAddress;
+                  cRegister.originName.value = name;
+                  cRegister.originAddress.value = detailLocation;
+                  // _courierC.originDetailAddress.value = detailLocation;
+                  // _courierC.originAsSender.value = asSender;
+                  cRegister.originPhone.value = phoneNumber;
+                  cRegister.originEmailAddress.value = emailAddress;
 
-              Get.back();
-              Get.back();
-            },
-            location:  (cRegister.originKelurahan.value +
-                " " +
-                cRegister.originKecamatan.value +
-                " " +
-                cRegister.originKota.value +
-                " " +
-                cRegister.originKodePos.value +
-                " " +
-                cRegister.originProvinsi.value),
-
-            context: context,
-            isOrigin: cRegister.isOrigin.value)
+                  Get.back();
+                  Get.back();
+                },
+                location: (cRegister.originKelurahan.value +
+                    " " +
+                    cRegister.originKecamatan.value +
+                    " " +
+                    cRegister.originKota.value +
+                    " " +
+                    cRegister.originKodePos.value +
+                    " " +
+                    cRegister.originProvinsi.value),
+                context: context,
+                isOrigin: cRegister.isOrigin.value)
             .displayBottomSheet(),
         backgroundColor: Colors.white,
       );
@@ -122,9 +119,8 @@ class _PageLocationState extends State<PageLocation> {
         },
         markerId: const MarkerId("mymarker"),
         infoWindow: InfoWindow(
-            title: cRegister.isOrigin.value
-                ? cRegister.originAddress.value
-                :""),
+            title:
+                cRegister.isOrigin.value ? cRegister.originAddress.value : ""),
         icon: BitmapDescriptor.defaultMarkerWithHue(cRegister.isOrigin.value
             ? BitmapDescriptor.hueBlue
             : BitmapDescriptor.hueOrange),
@@ -139,7 +135,7 @@ class _PageLocationState extends State<PageLocation> {
   Future<void> _setAddressFromMap(LatLng pos) async {
     try {
       List<Placemark> placemarks =
-      await placemarkFromCoordinates(pos.latitude, pos.longitude);
+          await placemarkFromCoordinates(pos.latitude, pos.longitude);
       Map<String, dynamic> lokasi = placemarks[0].toJson();
       for (var item in placemarks) {
         print(item.toString());
@@ -151,15 +147,16 @@ class _PageLocationState extends State<PageLocation> {
         print("MAsukkkkkkkk");
       }
 
-        cRegister.originAddress.value = lokasi['street'];
-        cRegister.originKelurahan.value = lokasi['subLocality'];
-        cRegister.originKecamatan.value = lokasi['locality'];
-        cRegister.originKota.value = lokasi['subAdministrativeArea'];
-        cRegister.originProvinsi.value = lokasi['administrativeArea'];
-        cRegister.originKodePos.value = lokasi['postalCode'];
-        cRegister.originNegara.value = lokasi['country'];
-        cRegister.originLatitude.value = pos.latitude;
-        cRegister.originLongitude.value = pos.longitude;setState(() {});
+      cRegister.originAddress.value = lokasi['street'];
+      cRegister.originKelurahan.value = lokasi['subLocality'];
+      cRegister.originKecamatan.value = lokasi['locality'];
+      cRegister.originKota.value = lokasi['subAdministrativeArea'];
+      cRegister.originProvinsi.value = lokasi['administrativeArea'];
+      cRegister.originKodePos.value = lokasi['postalCode'];
+      cRegister.originNegara.value = lokasi['country'];
+      cRegister.originLatitude.value = pos.latitude;
+      cRegister.originLongitude.value = pos.longitude;
+      setState(() {});
       print("hasil alamat " + cRegister.originAddress.value);
 
       _showOrHide(true);
@@ -172,7 +169,6 @@ class _PageLocationState extends State<PageLocation> {
       print("error setaddress $e");
     }
   }
-
 
   void _clearController() {
     if (cRegister.isOrigin.value) {
@@ -249,7 +245,9 @@ class _PageLocationState extends State<PageLocation> {
   }
 
   _getSearchLngLat() async {
-    var data = await Get.to(() => const PageCourierSearch(title: 'Search Location',));
+    var data = await Get.to(() => const PageCourierSearch(
+          title: 'Search Location',
+        ));
     if (data != null) {
       //change camera
       final GoogleMapController gmc = await mapController.future;
@@ -284,7 +282,10 @@ class _PageLocationState extends State<PageLocation> {
             controller: searchC,
             hintText: "Cari nama jalan, gedung, dll",
             enable: false,
-            prefixIcon: const Icon(Icons.location_on,color: Colors.blueAccent,),
+            prefixIcon: const Icon(
+              Icons.location_on,
+              color: Colors.blueAccent,
+            ),
           ),
         ),
       ),
