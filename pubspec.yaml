@@ -43,6 +43,8 @@ dependencies:
   fluttercontactpicker: ^4.5.1
   carousel_slider: ^4.0.0
   flutter_rating_bar: ^4.0.0
+  flutter_native_splash: ^1.3.2
+
 
   intl:
 

@@ -4,6 +4,7 @@ class AppAssets {
   static const ilustrasi2 = 'assets/ilustrasi/ilustrasi_2.png';
   static const ilustrasi3 = 'assets/ilustrasi/ilustrasi_3.png';
   static const ilustrasiHp = 'assets/ilustrasi/ilustrasi_hp.png';
+  static const ilustrasiVerifikasi = 'assets/ilustrasi/ilustrasi_hp.png';
 
   //logo
   static const logoHand = 'assets/logo/hands.png';
