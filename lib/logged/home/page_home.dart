@@ -1,7 +1,7 @@
-import 'package:asistenku/logged/home/controller_home.dart';
-import 'package:asistenku/logged/home/page_all_worker.dart';
-import 'package:asistenku/shared/constants/constants.dart';
-import 'package:asistenku/shared/constants/styles.dart';
+import 'package:AsistenKu/logged/home/controller_home.dart';
+import 'package:AsistenKu/logged/home/page_all_worker.dart';
+import 'package:AsistenKu/shared/constants/constants.dart';
+import 'package:AsistenKu/shared/constants/styles.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -150,9 +150,9 @@ class HomePage extends GetView<ControllerHome> {
                       Column(
                         children: [
                           InkWell(
-                            onTap:(){
-        Get.back();
-      },
+                            onTap: () {
+                              Get.back();
+                            },
                             child: Image.asset(
                               "assets/icons/ic_bell2.png",
                               width: IconSizes.xl,

@@ -1,5 +1,5 @@
-import 'package:asistenku/shared/constants/colors.dart';
-import 'package:asistenku/shared/constants/styles.dart';
+import 'package:AsistenKu/shared/constants/colors.dart';
+import 'package:AsistenKu/shared/constants/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

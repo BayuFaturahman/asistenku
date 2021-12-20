@@ -1,4 +1,4 @@
-package com.example.asistenku
+package com.example.AsistenKu
 
 import io.flutter.embedding.android.FlutterActivity
 

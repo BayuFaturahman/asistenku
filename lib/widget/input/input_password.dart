@@ -1,5 +1,4 @@
-
-import 'package:asistenku/shared/constants/colors.dart';
+import 'package:AsistenKu/shared/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,7 +9,9 @@ class InputPassword extends StatefulWidget {
     required this.icon,
     this.hintText,
     this.isPassword,
-    this.size, this.hintTextStyle, this.controller,
+    this.size,
+    this.hintTextStyle,
+    this.controller,
   }) : super(key: key);
 
   final Icon icon;
@@ -19,8 +20,6 @@ class InputPassword extends StatefulWidget {
   final double? size;
   final TextStyle? hintTextStyle;
   final TextEditingController? controller;
-
-
 
   @override
   State<InputPassword> createState() => _InputPasswordState();
@@ -76,7 +75,7 @@ class _InputPasswordState extends State<InputPassword> {
                         setState(() => showPassword = !showPassword),
                   )
                 : IconButton(
-                    icon:  const Icon(
+                    icon: const Icon(
                       Icons.remove_red_eye,
                       color: AppColor.primaryColor,
                     ),

@@ -1,4 +1,4 @@
-import 'package:asistenku/shared/constants/colors.dart';
+import 'package:AsistenKu/shared/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

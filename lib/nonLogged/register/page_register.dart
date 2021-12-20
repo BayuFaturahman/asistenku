@@ -1,8 +1,8 @@
-import 'package:asistenku/nonLogged/onboardingSplash/page_onboarding.dart';
-import 'package:asistenku/nonLogged/register/page_register_form.dart';
-import 'package:asistenku/widget/button_primary.dart';
-import 'package:asistenku/widget/input/input_form_icon.dart';
-import 'package:asistenku/widget/input/input_password.dart';
+import 'package:AsistenKu/nonLogged/onboardingSplash/page_onboarding.dart';
+import 'package:AsistenKu/nonLogged/register/page_register_form.dart';
+import 'package:AsistenKu/widget/button_primary.dart';
+import 'package:AsistenKu/widget/input/input_form_icon.dart';
+import 'package:AsistenKu/widget/input/input_password.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

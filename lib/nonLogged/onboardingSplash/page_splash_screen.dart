@@ -1,6 +1,6 @@
-import 'package:asistenku/shared/constants/assets.dart';
-import 'package:asistenku/shared/constants/colors.dart';
-import 'package:asistenku/shared/constants/styles.dart';
+import 'package:AsistenKu/shared/constants/assets.dart';
+import 'package:AsistenKu/shared/constants/colors.dart';
+import 'package:AsistenKu/shared/constants/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +28,7 @@ class PageSplash extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            "Asistenku",
+            "AsistenKu",
             style: TextStyles.body1.copyWith(color: AppColor.primaryColor),
           ),
           verticalSpace(50),

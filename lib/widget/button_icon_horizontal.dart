@@ -1,7 +1,6 @@
-import 'package:asistenku/shared/constants/colors.dart';
-import 'package:asistenku/shared/constants/styles.dart';
+import 'package:AsistenKu/shared/constants/colors.dart';
+import 'package:AsistenKu/shared/constants/styles.dart';
 import 'package:flutter/material.dart';
-
 
 class ButtonIconHorizontal extends StatelessWidget {
   // final String icon;
@@ -29,10 +28,13 @@ class ButtonIconHorizontal extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           IconButton(
-            padding: EdgeInsets.all(Insets.sm),
-            onPressed: onTap,
-            icon: Icon(Icons.map,size: IconSizes.lg,color: AppColor.secondColor.shade400,)
-          ),
+              padding: EdgeInsets.all(Insets.sm),
+              onPressed: onTap,
+              icon: Icon(
+                Icons.map,
+                size: IconSizes.lg,
+                color: AppColor.secondColor.shade400,
+              )),
           Expanded(
             child: Text(
               text,

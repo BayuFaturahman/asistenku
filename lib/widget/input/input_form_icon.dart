@@ -1,5 +1,5 @@
-import 'package:asistenku/logged/home/controller_home.dart';
-import 'package:asistenku/shared/constants/constants.dart';
+import 'package:AsistenKu/logged/home/controller_home.dart';
+import 'package:AsistenKu/shared/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';

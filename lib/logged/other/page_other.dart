@@ -1,4 +1,4 @@
-import 'package:asistenku/logged/other/controller_other.dart';
+import 'package:AsistenKu/logged/other/controller_other.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

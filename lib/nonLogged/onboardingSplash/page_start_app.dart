@@ -1,5 +1,5 @@
-import 'package:asistenku/nonLogged/onboardingSplash/page_onboarding.dart';
-import 'package:asistenku/widget/button_primary.dart';
+import 'package:AsistenKu/nonLogged/onboardingSplash/page_onboarding.dart';
+import 'package:AsistenKu/widget/button_primary.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -66,7 +66,7 @@ class PageStartAppState extends State<PageStartApp> {
                     height: 10,
                   ),
                   const Text(
-                    "Asistenku. is a household assistant service provider. such as cleaning the house, washing clothes and so on",
+                    "AsistenKu. is a household assistant service provider. such as cleaning the house, washing clothes and so on",
                     style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300),
                     textAlign: TextAlign.center,
                   ),

@@ -1,37 +1,71 @@
 import 'dart:convert';
 
+import 'package:AsistenKu/shared/constants/string.dart';
 import 'package:http/http.dart' as http;
 
+class ApiRegister {
+  Future<dynamic> registerCustumer(
+    String name,
+    String phone,
+    String email,
+    String password,
+    String role,
+  ) async {
+    try {
+      String url = MainUrls.urlApi + 'api/customer/register';
+      final payload = <String, String>{
+        "name": name,
+        "phoneNumber": phone,
+        "email": email,
+        "password": password,
+        "role": role
+      };
+      print("payload : " + payload.toString());
+      final response = await http.post(
+        Uri.parse(url),
+        headers: <String, String>{
+          'Accept': 'application/json',
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(payload),
+      );
+      print("respone api: " + response.body.toString());
+      if (response.statusCode == 200) {
+        final String responseString = response.body;
+        return jsonDecode(responseString);
+      } else {
+        throw response.reasonPhrase.toString();
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
 
-class ApiRegister{
+  Future<dynamic> otpVerifikasi(
+      {required String phone,
+      required String otp,
+      required String token}) async {
+    try {
+      String url = MainUrls.urlApi + 'api/customer/verify-otp';
 
-
-  Future<dynamic>registerUser(
-      String email,
-      String password,
-      String role,
-      )async{
-    String url = 'https://users';
-    final payload=<String,String>{
-      "email" : email,
-      "password": password,
-      "role" : role
-    };
-    final response = await http.post(
-      Uri.parse(url),
-      headers: <String,String>{
-        'Accept': 'application/json',
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization':
-        'Basic ZWNvbTowNTE0NGY0ZTEyYWFhNDAyYWViNTFlZjJjN2RkZTUyNw==',
-      },
-      body: jsonEncode(payload),
-    );
-    if (response.statusCode == 200) {
-      final String responseString = response.body;
-      return jsonDecode(responseString);
-    } else {
-      throw response.reasonPhrase.toString();
+      final payload = <String, String>{
+        "phoneNumber": phone,
+        "otp": otp,
+        "token": token,
+      };
+      print("payload : " + payload.toString());
+      final response = await http.post(
+        Uri.parse(url),
+        headers: <String, String>{
+          'Accept': 'application/json',
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(payload),
+      );
+      print("respone api : " + response.body.toString());
+      return response.body;
+    } catch (e) {
+      rethrow;
     }
   }
 }

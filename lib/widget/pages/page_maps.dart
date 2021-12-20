@@ -1,9 +1,9 @@
 import 'dart:async';
-import 'package:asistenku/widget/pages/location_maps/page_location_search.dart';
-import 'package:asistenku/shared/constants/constants.dart';
-import 'package:asistenku/widget/button_primary.dart';
-import 'package:asistenku/widget/input/inpu_primary.dart';
-import 'package:asistenku/widget/pages/page_decoration_top.dart';
+import 'package:AsistenKu/widget/pages/location_maps/page_location_search.dart';
+import 'package:AsistenKu/shared/constants/constants.dart';
+import 'package:AsistenKu/widget/button_primary.dart';
+import 'package:AsistenKu/widget/input/inpu_primary.dart';
+import 'package:AsistenKu/widget/pages/page_decoration_top.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';

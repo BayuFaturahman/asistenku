@@ -1,6 +1,6 @@
-import 'package:asistenku/nonLogged/loggin/page_login.dart';
-import 'package:asistenku/shared/constants/constants.dart';
-import 'package:asistenku/widget/button_primary.dart';
+import 'package:AsistenKu/nonLogged/loggin/page_login.dart';
+import 'package:AsistenKu/shared/constants/constants.dart';
+import 'package:AsistenKu/widget/button_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -77,11 +77,10 @@ class _OnbordingDataState extends State<OnbordingData> {
                           fontWeight: FontWeight.w300, fontSize: 14),
                     ),
                   ),
-               ],
+                ],
               ),
             ),
           ),
-
         ],
       ),
     );

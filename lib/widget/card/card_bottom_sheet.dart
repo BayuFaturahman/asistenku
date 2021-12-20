@@ -1,9 +1,8 @@
-import 'package:asistenku/widget/card/card_rounded.dart';
-import 'package:asistenku/shared/constants/colors.dart';
-import 'package:asistenku/shared/constants/constants.dart';
+import 'package:AsistenKu/widget/card/card_rounded.dart';
+import 'package:AsistenKu/shared/constants/colors.dart';
+import 'package:AsistenKu/shared/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 
 class CardBottomsheet extends StatelessWidget {
   const CardBottomsheet({Key? key, required this.child, this.padding})
@@ -11,16 +10,14 @@ class CardBottomsheet extends StatelessWidget {
   final Widget child;
   final EdgeInsets? padding;
 
-
   @override
   Widget build(BuildContext context) {
-
-
     return Container(
         padding: padding ??
             EdgeInsets.symmetric(vertical: 8 * scale, horizontal: 16 * scale),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(16 * scale)),
+            borderRadius:
+                BorderRadius.vertical(top: Radius.circular(16 * scale)),
             color: Colors.white),
         child: Stack(
           children: [

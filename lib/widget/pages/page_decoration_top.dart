@@ -1,6 +1,6 @@
-import 'package:asistenku/shared/constants/colors.dart';
-import 'package:asistenku/shared/constants/constants.dart';
-import 'package:asistenku/widget/appbar/appbar.dart';
+import 'package:AsistenKu/shared/constants/colors.dart';
+import 'package:AsistenKu/shared/constants/constants.dart';
+import 'package:AsistenKu/widget/appbar/appbar.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 

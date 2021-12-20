@@ -1,13 +1,13 @@
 import 'dart:async';
 
-import 'package:asistenku/nonLogged/register/controller_register.dart';
-import 'package:asistenku/shared/constants/constants.dart';
-import 'package:asistenku/shared/constants/styles.dart';
-import 'package:asistenku/widget/button_icon_horizontal.dart';
-import 'package:asistenku/widget/input/inpu_primary.dart';
-import 'package:asistenku/widget/pages/location_maps/controller_maps.dart';
-import 'package:asistenku/widget/pages/page_decoration_top.dart';
-import 'package:asistenku/widget/pages/page_maps.dart';
+import 'package:AsistenKu/nonLogged/register/controller_register.dart';
+import 'package:AsistenKu/shared/constants/constants.dart';
+import 'package:AsistenKu/shared/constants/styles.dart';
+import 'package:AsistenKu/widget/button_icon_horizontal.dart';
+import 'package:AsistenKu/widget/input/inpu_primary.dart';
+import 'package:AsistenKu/widget/pages/location_maps/controller_maps.dart';
+import 'package:AsistenKu/widget/pages/page_decoration_top.dart';
+import 'package:AsistenKu/widget/pages/page_maps.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';

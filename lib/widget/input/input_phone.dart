@@ -1,9 +1,9 @@
 import 'dart:developer';
 
-import 'package:asistenku/shared/constants/colors.dart';
-import 'package:asistenku/shared/constants/phone_country_code.dart';
-import 'package:asistenku/shared/constants/styles.dart';
-import 'package:asistenku/widget/input/input_serach.dart';
+import 'package:AsistenKu/shared/constants/colors.dart';
+import 'package:AsistenKu/shared/constants/phone_country_code.dart';
+import 'package:AsistenKu/shared/constants/styles.dart';
+import 'package:AsistenKu/widget/input/input_serach.dart';
 import 'package:get/get.dart';
 
 import 'package:flutter/material.dart';

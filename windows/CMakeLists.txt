@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
-project(asistenku LANGUAGES CXX)
+project(AsistenKu LANGUAGES CXX)
 
-set(BINARY_NAME "asistenku")
+set(BINARY_NAME "AsistenKu")
 
 cmake_policy(SET CMP0063 NEW)
 

@@ -1,17 +1,17 @@
-import 'package:asistenku/nonLogged/onboardingSplash/page_onboarding.dart';
-import 'package:asistenku/nonLogged/register/controller_register.dart';
-import 'package:asistenku/shared/constants/constants.dart';
-import 'package:asistenku/shared/helper/regex.dart';
-import 'package:asistenku/widget/input/inpu_primary.dart';
-import 'package:asistenku/widget/input/input_phone.dart';
-import 'package:asistenku/widget/input/input_primary_password.dart';
-import 'package:asistenku/widget/pages/location_maps/controller_maps.dart';
-import 'package:asistenku/widget/pages/location_maps/page_location.dart';
-import 'package:asistenku/widget/pages/location_maps/page_location.dart';
-import 'package:asistenku/widget/button_primary.dart';
-import 'package:asistenku/widget/input/input_form.dart';
-import 'package:asistenku/widget/input/input_form_icon.dart';
-import 'package:asistenku/widget/input/input_password.dart';
+import 'package:AsistenKu/nonLogged/onboardingSplash/page_onboarding.dart';
+import 'package:AsistenKu/nonLogged/register/controller_register.dart';
+import 'package:AsistenKu/shared/constants/constants.dart';
+import 'package:AsistenKu/shared/helper/regex.dart';
+import 'package:AsistenKu/widget/input/inpu_primary.dart';
+import 'package:AsistenKu/widget/input/input_phone.dart';
+import 'package:AsistenKu/widget/input/input_primary_password.dart';
+import 'package:AsistenKu/widget/pages/location_maps/controller_maps.dart';
+import 'package:AsistenKu/widget/pages/location_maps/page_location.dart';
+import 'package:AsistenKu/widget/pages/location_maps/page_location.dart';
+import 'package:AsistenKu/widget/button_primary.dart';
+import 'package:AsistenKu/widget/input/input_form.dart';
+import 'package:AsistenKu/widget/input/input_form_icon.dart';
+import 'package:AsistenKu/widget/input/input_password.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -99,7 +99,7 @@ class PageForgetPasswordState extends State<PageForgetPassword> {
               ),
               verticalSpace(54),
               Image.asset(
-                AppAssets.ilustrasiVerifikasi,
+                AppAssets.imageVerifikasi,
                 width: 80,
                 height: 160,
               ),

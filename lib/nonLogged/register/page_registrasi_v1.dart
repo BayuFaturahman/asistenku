@@ -1,17 +1,18 @@
-import 'package:asistenku/nonLogged/onboardingSplash/page_onboarding.dart';
-import 'package:asistenku/nonLogged/register/controller_register.dart';
-import 'package:asistenku/nonLogged/register/page_otp.dart';
-import 'package:asistenku/shared/constants/constants.dart';
-import 'package:asistenku/shared/helper/regex.dart';
-import 'package:asistenku/widget/input/inpu_primary.dart';
-import 'package:asistenku/widget/input/input_primary_password.dart';
-import 'package:asistenku/widget/pages/location_maps/controller_maps.dart';
-import 'package:asistenku/widget/pages/location_maps/page_location.dart';
-import 'package:asistenku/widget/pages/location_maps/page_location.dart';
-import 'package:asistenku/widget/button_primary.dart';
-import 'package:asistenku/widget/input/input_form.dart';
-import 'package:asistenku/widget/input/input_form_icon.dart';
-import 'package:asistenku/widget/input/input_password.dart';
+import 'package:AsistenKu/nonLogged/onboardingSplash/page_onboarding.dart';
+import 'package:AsistenKu/nonLogged/register/controller_register.dart';
+import 'package:AsistenKu/nonLogged/register/page_otp.dart';
+import 'package:AsistenKu/shared/constants/constants.dart';
+import 'package:AsistenKu/shared/helper/regex.dart';
+import 'package:AsistenKu/widget/input/inpu_primary.dart';
+import 'package:AsistenKu/widget/input/input_primary_password.dart';
+import 'package:AsistenKu/widget/other/show_dialog.dart';
+import 'package:AsistenKu/widget/pages/location_maps/controller_maps.dart';
+import 'package:AsistenKu/widget/pages/location_maps/page_location.dart';
+import 'package:AsistenKu/widget/pages/location_maps/page_location.dart';
+import 'package:AsistenKu/widget/button_primary.dart';
+import 'package:AsistenKu/widget/input/input_form.dart';
+import 'package:AsistenKu/widget/input/input_form_icon.dart';
+import 'package:AsistenKu/widget/input/input_password.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -27,6 +28,8 @@ class PageRegistrasiV1 extends StatefulWidget {
 }
 
 class PageRegistrasiV1State extends State<PageRegistrasiV1> {
+  ControllerRegister cRegister = ControllerRegister();
+
   TextEditingController nama = TextEditingController();
   TextEditingController noHp = TextEditingController();
   TextEditingController email = TextEditingController();
@@ -167,7 +170,9 @@ class PageRegistrasiV1State extends State<PageRegistrasiV1> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 20, horizontal: 45),
                 child: ButtonPrimary(
-                  onPressed: () => Get.to(() => const PageOtp()),
+                  onPressed: () {
+                    _submit();
+                  },
                   height: 60,
                   radius: 15.0,
                   label: 'Daftar',
@@ -183,5 +188,29 @@ class PageRegistrasiV1State extends State<PageRegistrasiV1> {
         ),
       ),
     );
+  }
+
+  _submit() async {
+    try {
+      final value = cRegister.registerUser(
+          name: nama.text,
+          phone: noHp.text,
+          email: email.text,
+          password: kataSandiKonfirm.text,
+          role: 'customer');
+      print("VALUE DI UI : " + value.toString());
+      if (value != null) {
+        showPopUp(
+            imageUri: AppAssets.imageSuccess,
+            imageSize: 80,
+            onPress: () => Get.to(() => const PageOtp()),
+            description:
+                'Kami akan mengirim code verifikasi melalui SMS anda ');
+      }
+    } catch (e) {
+      showPopUpError(
+        errorMessage: e.toString(),
+      );
+    }
   }
 }

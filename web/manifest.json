@@ -1,6 +1,6 @@
 {
-    "name": "asistenku",
-    "short_name": "asistenku",
+    "name": "AsistenKu",
+    "short_name": "AsistenKu",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

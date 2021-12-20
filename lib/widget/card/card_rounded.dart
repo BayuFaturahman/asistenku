@@ -1,4 +1,4 @@
-import 'package:asistenku/shared/constants/constants.dart';
+import 'package:AsistenKu/shared/constants/constants.dart';
 import 'package:get/get.dart';
 
 import 'package:flutter/material.dart';

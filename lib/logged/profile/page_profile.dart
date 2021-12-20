@@ -1,7 +1,6 @@
-import 'package:asistenku/logged/profile/controller_profile.dart';
+import 'package:AsistenKu/logged/profile/controller_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 
 class AccountPage extends GetView<AccountController> {
   const AccountPage({Key? key}) : super(key: key);

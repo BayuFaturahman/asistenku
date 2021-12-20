@@ -1,7 +1,7 @@
 library flutteronboardingscreens;
 
-import 'package:asistenku/nonLogged/loggin/page_login.dart';
-import 'package:asistenku/nonLogged/onboardingSplash/onboarding_data.dart';
+import 'package:AsistenKu/nonLogged/loggin/page_login.dart';
+import 'package:AsistenKu/nonLogged/onboardingSplash/onboarding_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -76,7 +76,7 @@ class IntroScreenState extends State<IntroScreen> {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 40,left: 40,right: 40),
+            padding: const EdgeInsets.only(bottom: 40, left: 40, right: 40),
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Row(
@@ -92,8 +92,8 @@ class IntroScreenState extends State<IntroScreen> {
                     onPressed: () => lastPage
                         ? null
                         : widget.skipPage(
-                      context,
-                    ),
+                            context,
+                          ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -108,12 +108,12 @@ class IntroScreenState extends State<IntroScreen> {
                     ),
                   ),
                   TextButton(
-                    child:  Container(
+                    child: Container(
                       width: 50,
                       height: 50,
-                      decoration:const BoxDecoration(
-                        color:Color(0xFFF8F8F8),
-                          boxShadow:  [
+                      decoration: const BoxDecoration(
+                          color: Color(0xFFF8F8F8),
+                          boxShadow: [
                             BoxShadow(
                               color: Color.fromRGBO(82, 150, 214, 0.11),
                               blurRadius: 7,
@@ -121,21 +121,19 @@ class IntroScreenState extends State<IntroScreen> {
                               offset: Offset(4, 0), // Shadow position
                             ),
                           ],
-                        shape: BoxShape.circle
-                      ),
-                      child:const  Icon(Icons.arrow_forward),
+                          shape: BoxShape.circle),
+                      child: const Icon(Icons.arrow_forward),
                     ),
                     onPressed: () => lastPage
                         ? widget.skipPage(context)
                         : controller.nextPage(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeIn),
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.easeIn),
                   ),
                 ],
               ),
             ),
           ),
-
         ],
       ),
     );
