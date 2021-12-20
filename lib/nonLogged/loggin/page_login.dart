@@ -1,4 +1,5 @@
 import 'package:asistenku/logged/dashboard/page_dashboard.dart';
+import 'package:asistenku/nonLogged/forget_password.dart';
 import 'package:asistenku/nonLogged/onboardingSplash/page_onboarding.dart';
 import 'package:asistenku/nonLogged/register/page_register.dart';
 import 'package:asistenku/nonLogged/register/page_registrasi_v1.dart';
@@ -236,13 +237,16 @@ class PageLogginState extends State<PageLoggin> {
                               fontSize: 21, fontWeight: FontWeight.bold),
                         ),
                       ),
-                      const Center(
-                        child: Text(
-                          "Lupa Kata Sandi ?",
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey),
+                      Center(
+                        child: InkWell(
+                          onTap: () => Get.to(() => PageForgetPassword()),
+                          child: const Text(
+                            "Lupa Kata Sandi ?",
+                            style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey),
+                          ),
                         ),
                       ),
                       verticalSpace(20),

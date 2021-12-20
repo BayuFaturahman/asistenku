@@ -21,7 +21,7 @@ class InputPhone extends StatefulWidget {
   final Function(String?)? onSave;
   final Function()? onEditingComplete;
   const InputPhone({
-    this.hintText = 'Masukkan nomor telepon',
+    this.hintText = '',
     this.validate,
     this.onChange,
     this.prefixIcon,
@@ -112,7 +112,8 @@ class _InputPhoneState extends State<InputPhone> {
                     ),
                   ),
                 ),
-                prefixIconConstraints: BoxConstraints(maxWidth: Insets.xxl * 5),
+                prefixIconConstraints:
+                    BoxConstraints(maxWidth: Insets.xxl * 2.5),
                 suffixIcon: widget.suffixIcon,
                 hintStyle: TextStyles.body1
                     .copyWith(color: AppColor.bodyColor.shade500)),

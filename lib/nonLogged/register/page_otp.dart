@@ -26,11 +26,7 @@ class PageOtp extends StatefulWidget {
 }
 
 class PageOtpState extends State<PageOtp> {
-  TextEditingController nama = TextEditingController();
-  TextEditingController noHp = TextEditingController();
-  TextEditingController email = TextEditingController();
-  TextEditingController kataSandi = TextEditingController();
-  TextEditingController kataSandiKonfirm = TextEditingController();
+  TextEditingController otp = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +102,7 @@ class PageOtpState extends State<PageOtp> {
                     ],
                     hintText: "Kode verifikasi",
                     onChange: (val) {},
-                    controller: noHp),
+                    controller: otp),
               ),
               verticalSpace(70),
               Column(
