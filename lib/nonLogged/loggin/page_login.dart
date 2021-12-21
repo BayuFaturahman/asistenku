@@ -140,7 +140,7 @@ class PageLogginState extends State<PageLoggin> {
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 30),
                                 child: InputPrimary(
-                                    hintText: "Masukan email",
+                                    hintText: "Masukkan email",
                                     controller: email,
                                     onChange: (String) {},
                                     validate: (value) {
@@ -167,7 +167,7 @@ class PageLogginState extends State<PageLoggin> {
                                           '- Terdiri dari huruf besar, huruf kecil, angka dan symbol (!@#\$%^&*(),.?":{}|<>])';
                                     }
                                   },
-                                  hintText: 'Masukan kata sandi',
+                                  hintText: 'Masukkan kata sandi',
                                   prefixIcon: const Icon(
                                     Icons.lock,
                                     size: 30,
@@ -185,6 +185,7 @@ class PageLogginState extends State<PageLoggin> {
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 30),
                                 child: InputPhone(
+                                  hintText: '812xxxxxxxxx',
                                     onChange: (val) {},
                                     controller: noHp,
                                     phoneNumber: (val) {}),
@@ -201,7 +202,7 @@ class PageLogginState extends State<PageLoggin> {
                                           '- Terdiri dari huruf besar, huruf kecil, angka dan symbol (!@#\$%^&*(),.?":{}|<>])';
                                     }
                                   },
-                                  hintText: 'Masukan kata sandi',
+                                  hintText: 'Masukkan kata sandi',
                                   prefixIcon: const Icon(
                                     Icons.lock,
                                     size: 30,

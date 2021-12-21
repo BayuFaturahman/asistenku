@@ -1,11 +1,12 @@
+import 'package:AsistenKu/nonLogged/onboardingSplash/controller_splash.dart';
 import 'package:AsistenKu/shared/constants/assets.dart';
 import 'package:AsistenKu/shared/constants/colors.dart';
 import 'package:AsistenKu/shared/constants/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class PageSplash extends StatelessWidget {
-  const PageSplash({Key? key}) : super(key: key);
+class SplashView extends GetView<SplashController>  {
 
   @override
   Widget build(BuildContext context) {

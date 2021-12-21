@@ -15,6 +15,8 @@ class AppAssets {
   static const imageCard = 'assets/images/bg_card.png';
   static const imageHeader = 'assets/images/bg_header.png';
   static const imageSuccess = 'assets/images/success.png';
+  static const imageEror = 'assets/images/eror.png';
+
   static const imageVerifikasi = 'assets/images/verifikasi.png';
 
   //icon
