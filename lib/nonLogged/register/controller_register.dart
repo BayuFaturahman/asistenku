@@ -7,6 +7,8 @@ class ControllerRegister extends GetxController {
 
   RxString token = "".obs;
   RxString phoneCustumer = "".obs;
+  RxInt statusCode=0.obs;
+
 
   Future<dynamic> registerUser(
       {required String name,
@@ -17,11 +19,12 @@ class ControllerRegister extends GetxController {
     isLoading(true);
     try {
       isLoading(true);
-      final result = await ApiRegister()
+      var result = await ApiRegister()
           .registerCustumer(name, phone, email, password, role);
       print("value di controller : " + result.toString());
-      token(result['otp']['token']);
-      phoneCustumer(result['data']['phoneNumber']);
+      statusCode(result['code']);
+      // token(result['otp']['token']);
+      // phoneCustumer(result['data']['phoneNumber']);
 
       isLoading(false);
       return result;

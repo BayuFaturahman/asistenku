@@ -11,7 +11,7 @@ class ApiRegister {
     String password,
     String role,
   ) async {
-    try {
+    try{
       String url = MainUrls.urlApi + 'api/customer/register';
       final payload = <String, String>{
         "name": name,
@@ -31,14 +31,20 @@ class ApiRegister {
       );
       print("respone api: " + response.body.toString());
       if (response.statusCode == 200) {
-        final String responseString = response.body;
-        return jsonDecode(responseString);
+        Map<String, dynamic> data = jsonDecode(response.body);
+        print("respone data: " + data.toString());
+
+        return data;
       } else {
-        throw response.reasonPhrase.toString();
+        Map<String, dynamic> data = jsonDecode(response.body);
+
+        return data;
       }
-    } catch (e) {
+    }catch(e){
       rethrow;
     }
+
+
   }
 
   Future<dynamic> otpVerifikasi(
