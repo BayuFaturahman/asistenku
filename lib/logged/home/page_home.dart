@@ -1,5 +1,6 @@
 import 'package:AsistenKu/logged/home/controller_home.dart';
 import 'package:AsistenKu/logged/home/page_all_worker.dart';
+import 'package:AsistenKu/nonLogged/loggin/controller_user_login.dart';
 import 'package:AsistenKu/shared/constants/constants.dart';
 import 'package:AsistenKu/shared/constants/styles.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -38,6 +39,7 @@ class HomePage extends GetView<ControllerHome> {
 
   final CarouselController _controller = CarouselController();
   final ControllerHome cHome = Get.find<ControllerHome>();
+  final ControllerUserLogin cUser = Get.find<ControllerUserLogin>();
   final Set<Marker> markers = new Set(); //ma
   Set<Marker> myMarker = {};
 
@@ -133,19 +135,21 @@ class HomePage extends GetView<ControllerHome> {
                         ],
                       ),
                       horizontalSpace(10),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Bayu Faturahman",
-                              style: TextStyles.h5.copyWith(
-                                color: AppColor.whiteColor,
-                              )),
-                          Text("Member",
-                              style: TextStyles.body1.copyWith(
-                                color: AppColor.whiteColor,
-                              )),
-                        ],
-                      ),
+                  Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Obx(()=> Text(cUser.role.value,
+                                  style: TextStyles.h5.copyWith(
+                                    color: AppColor.whiteColor,
+                                  )),
+                            ),
+                            Text(cUser.role.value,
+                                style: TextStyles.body1.copyWith(
+                                  color: AppColor.whiteColor,
+                                )),
+                          ],
+                        ),
+
                       const Spacer(),
                       Column(
                         children: [

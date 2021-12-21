@@ -12,3 +12,4 @@ abstract class _Paths {
   static const INTROSCREEN = '/introScreen';
   static const SPLASH = '/splash';
 }
+

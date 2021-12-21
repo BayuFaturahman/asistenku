@@ -23,8 +23,8 @@ class ControllerRegister extends GetxController {
           .registerCustumer(name, phone, email, password, role);
       print("value di controller : " + result.toString());
       statusCode(result['code']);
-      // token(result['otp']['token']);
-      // phoneCustumer(result['data']['phoneNumber']);
+      token(result['otp']['token']);
+      phoneCustumer(result['data']['phoneNumber']);
 
       isLoading(false);
       return result;
@@ -46,7 +46,6 @@ class ControllerRegister extends GetxController {
           .otpVerifikasi(phone: phone, otp: otp, token: token);
       print("value di controller : " + result.body.toString());
       isLoading(false);
-
       return result;
     } catch (e) {
       isLoading(false);

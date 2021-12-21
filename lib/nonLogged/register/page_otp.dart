@@ -1,3 +1,4 @@
+import 'package:AsistenKu/nonLogged/loggin/page_login.dart';
 import 'package:AsistenKu/nonLogged/onboardingSplash/page_onboarding.dart';
 import 'package:AsistenKu/nonLogged/register/controller_register.dart';
 import 'package:AsistenKu/shared/constants/constants.dart';
@@ -163,7 +164,7 @@ class PageOtpState extends State<PageOtp> {
             imageUri: AppAssets.imageSuccess,
             imageSize: 80,
             onPress: () {
-              const PageOtp();
+               Get.offAll(()=>PageLoggin());
             },
             description: 'Verifikasi Berhasil');
       }

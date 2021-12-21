@@ -3,6 +3,7 @@ import 'package:AsistenKu/logged/home/page_home.dart';
 import 'package:AsistenKu/logged/inbox/page_inbox.dart';
 import 'package:AsistenKu/logged/other/page_other.dart';
 import 'package:AsistenKu/logged/profile/page_profile.dart';
+import 'package:AsistenKu/nonLogged/loggin/controller_user_login.dart';
 import 'package:AsistenKu/shared/constants/colors.dart';
 import 'package:AsistenKu/shared/constants/styles.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,6 +24,7 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   final ControllerDashboard cDashboard = Get.find<ControllerDashboard>();
+  final ControllerUserLogin cUser = Get.find<ControllerUserLogin>();
 
   @override
   void initState() {
@@ -31,6 +33,7 @@ class _DashboardPageState extends State<DashboardPage> {
 
   @override
   Widget build(BuildContext context) {
+    print("nama : " +cUser.nama.value);
     return GetBuilder<ControllerDashboard>(
       builder: (controller) {
         return Scaffold(
@@ -98,10 +101,10 @@ class _DashboardPageState extends State<DashboardPage> {
                 title: Text(
                   'Profile',
                   style: TextStyle(
-                      color: cDashboard.tabIndex.value == 2
+                      color: cDashboard.tabIndex.value == 3
                           ? AppColor.successColor
                           : AppColor.bodyColor[600],
-                      fontWeight: cDashboard.tabIndex.value == 2
+                      fontWeight: cDashboard.tabIndex.value == 3
                           ? FontWeight.bold
                           : FontWeight.normal),
                 ),
