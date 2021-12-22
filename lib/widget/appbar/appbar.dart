@@ -8,6 +8,7 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final Widget? center;
   final Widget? bottom;
   final Widget? flexibleSpace;
+  final double? titleSpacing;
 
   final Color? color;
   final Color? colorTitle;
@@ -29,7 +30,7 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
       this.actions,
       this.elevation = 0,
       this.onBackPressed,
-      this.useLeading = true})
+      this.useLeading = true, this.titleSpacing})
       : super(key: key);
 
   @override
@@ -44,7 +45,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      titleSpacing: 0,
+      titleSpacing: widget.titleSpacing ?? 105,
       automaticallyImplyLeading: false,
       elevation: widget.elevation,
       backgroundColor: widget.color ?? AppColor.bodyColor.shade50,
@@ -63,7 +64,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
           Text(
             widget.title,
             style: TextStyles.subtitle1.copyWith(
-                color: widget.colorTitle ?? AppColor.bodyColor.shade500),
+                color: widget.colorTitle ?? AppColor.bodyColor),
           ),
       actions: widget.actions ??
           <Widget>[
