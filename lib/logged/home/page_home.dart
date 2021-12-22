@@ -9,56 +9,37 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 final List<String> imgList = [
-  'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
-  'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80',
-  'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
-  'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
+  AppAssets.imagePromo50,
+  AppAssets.imagePromo50,
+  AppAssets.imagePromo50
 ];
 
 List item = [
-  {"icon": "assets/icons/ic_clean.png", "label": "Cleaner"},
-  {"icon": "assets/icons/ic_washing.png", "label": "Washing"},
-  {"icon": "assets/icons/ic_ironing.png", "label": "Ironing"},
-  {'icon': 'assets/icons/ic_load.png', 'label': 'not available'},
-  {'icon': 'assets/icons/ic_load.png', 'label': 'not available'},
-  {'icon': 'assets/icons/ic_load.png', 'label': 'not available'},
-  {'icon': 'assets/icons/ic_load.png', 'label': 'not available'},
-  {'icon': 'assets/icons/ic_all.png', 'label': 'ALL'}
+  {"icon": AppAssets.menuFullService, "label": "Full Service"},
+  {"icon": AppAssets.menuClean, "label": "Cleaning"},
+  {"icon": AppAssets.menuBabySister, "label": "Babysitter"},
+  {'icon': AppAssets.menuCareviger, 'label': 'Caregiver'},
+  {'icon': AppAssets.menuNurseParent, 'label': 'Nurse Parent'},
+  {'icon': AppAssets.menuSemua, 'label': 'Semua'},
 ];
 
 class HomePage extends GetView<ControllerHome> {
   final double lat;
   final double long;
+  final String addres;
+  final dataUser;
+
   HomePage(
     this.lat,
-    this.long, {
+    this.long,
+    this.dataUser,
+    this.addres, {
     Key? key,
   }) : super(key: key);
 
   final CarouselController _controller = CarouselController();
   final ControllerHome cHome = Get.find<ControllerHome>();
   final ControllerUserLogin cUser = Get.find<ControllerUserLogin>();
-  final Set<Marker> markers = new Set(); //ma
-  Set<Marker> myMarker = {};
-
-  Set<Marker> getmarkers() {
-    LatLng selectedLocation = LatLng(lat, long);
-
-    markers.add(Marker(
-      //add first marker
-      markerId: MarkerId(selectedLocation.toString()),
-      position: selectedLocation, //position of marker
-      infoWindow: const InfoWindow(
-        //popup info
-        title: 'Lokasi Anda',
-        snippet: '',
-      ),
-      icon: BitmapDescriptor.defaultMarker, //Icon for Marker
-    ));
-    return markers;
-  }
 
   final List<Widget> imageSliders = imgList
       .map((item) => Container(
@@ -68,7 +49,7 @@ class HomePage extends GetView<ControllerHome> {
                 borderRadius: const BorderRadius.all(Radius.circular(5.0)),
                 child: Stack(
                   children: <Widget>[
-                    Image.network(item, fit: BoxFit.cover, width: 1000.0),
+                    Image.asset(item, fit: BoxFit.cover, width: 1000.0),
                     Positioned(
                       bottom: 0.0,
                       left: 0.0,
@@ -84,16 +65,6 @@ class HomePage extends GetView<ControllerHome> {
                                 ],
                                 begin: Alignment.bottomCenter,
                                 end: Alignment.topCenter,
-                              ),
-                            ),
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 10.0, horizontal: 20.0),
-                            child: Text(
-                              'No. ${imgList.indexOf(item)} Banner',
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
@@ -114,7 +85,7 @@ class HomePage extends GetView<ControllerHome> {
         shrinkWrap: true,
         children: [
           SizedBox(
-            height: Get.height / 1.2,
+            height: Get.height / 1.1,
             child: Stack(
               children: [
                 Image.asset(
@@ -130,36 +101,60 @@ class HomePage extends GetView<ControllerHome> {
                         children: [
                           Image.asset(
                             "assets/images/profile1.png",
-                            width: IconSizes.xl,
+                            width: IconSizes.xxl,
                           ),
                         ],
                       ),
                       horizontalSpace(10),
-                  Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Obx(()=> Text(cUser.role.value,
-                                  style: TextStyles.h5.copyWith(
-                                    color: AppColor.whiteColor,
-                                  )),
-                            ),
-                            Text(cUser.role.value,
-                                style: TextStyles.body1.copyWith(
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              horizontalSpace(2),
+                              Text(
+                                dataUser['name'],
+                                style: TextStyles.h5.copyWith(
                                   color: AppColor.whiteColor,
-                                )),
-                          ],
-                        ),
-
+                                ),
+                              ),
+                            ],
+                          ),
+                          verticalSpace(5),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.only(right: 3, top: 5),
+                                child: Icon(
+                                  Icons.location_on,
+                                  size: 15,
+                                  color: AppColor.whiteColor,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 200,
+                                child: Text(addres,
+                                    style: TextStyles.subtitle3.copyWith(
+                                      color: AppColor.whiteColor,
+                                    )),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                       const Spacer(),
                       Column(
                         children: [
+                          verticalSpace(10),
                           InkWell(
                             onTap: () {
                               Get.back();
                             },
                             child: Image.asset(
                               "assets/icons/ic_bell2.png",
-                              width: IconSizes.xl,
+                              width: 25,
+                              height: 25,
                             ),
                           ),
                         ],
@@ -178,6 +173,7 @@ class HomePage extends GetView<ControllerHome> {
                             autoPlay: true,
                             enlargeCenterPage: true,
                             aspectRatio: 2.0,
+                            height: 150,
                             onPageChanged: (index, reason) {
                               cHome.indicator(index);
                             }),
@@ -192,7 +188,7 @@ class HomePage extends GetView<ControllerHome> {
                                 width: 10.0,
                                 height: 10.0,
                                 margin: const EdgeInsets.symmetric(
-                                    vertical: 8.0, horizontal: 4.0),
+                                    vertical: 10, horizontal: 4.0),
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: (Theme.of(context).brightness ==
@@ -212,41 +208,55 @@ class HomePage extends GetView<ControllerHome> {
                   ),
                 ),
                 Padding(
+                  padding: const EdgeInsets.only(
+                      top: 330, left: 17, right: 17, bottom: 10),
+                  child: Text(
+                    "Kategori Layanan",
+                    style: TextStyles.body1
+                        .copyWith(color: AppColor.bodyColor.shade700),
+                  ),
+                ),
+                Padding(
                   padding: const EdgeInsets.only(top: 370, left: 17, right: 17),
-                  child: InkWell(
-                    onTap: () => Get.to(() => PageAllWorker()),
-                    child: GridView.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 4,
-                        ),
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: item.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Column(
-                            children: [
-                              Container(
-                                height: 60,
-                                width: 60,
-                                decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                        image: AssetImage(
-                                            'assets/images/bg_menu.png'))),
-                                child: Image.asset(
-                                  item[index]['icon'],
-                                  width: 10,
-                                  height: 10,
+                  child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                      ),
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: item.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Column(
+                          children: [
+                            Container(
+                              height: 94,
+                              width: 110,
+                              decoration: BoxDecoration(
+                                  color: AppColor.whiteColor,
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 12, left: 20, right: 20),
+                                child: Column(
+                                  children: [
+                                    Image.asset(
+                                      item[index]['icon'],
+                                      width: 45,
+                                      height: 45,
+                                    ),
+                                    verticalSpace(10),
+                                    Text(
+                                      item[index]['label'],
+                                      style: TextStyles.small1.copyWith(
+                                          color: AppColor.bodyColor[400]),
+                                    )
+                                  ],
                                 ),
                               ),
-                              Text(
-                                item[index]['label'],
-                                style: TextStyles.callout1
-                                    .copyWith(color: AppColor.bodyColor[400]),
-                              )
-                            ],
-                          );
-                        }),
-                  ),
+                            ),
+                          ],
+                        );
+                      }),
                 ),
 
                 // Padding(
@@ -262,32 +272,7 @@ class HomePage extends GetView<ControllerHome> {
               horizontal: 17.0,
             ),
             child: Text(
-              "Your Location",
-              style: TextStyles.h6,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(17.0),
-            child: Container(
-              height: 150,
-              child: GoogleMap(
-                mapType: MapType.normal,
-                markers: getmarkers(),
-                initialCameraPosition: CameraPosition(
-                  target: LatLng(lat, long),
-                  zoom: 19,
-                ),
-              ),
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
-            ),
-          ),
-          verticalSpace(5),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 17.0,
-            ),
-            child: Text(
-              "News updates",
+              "Update Pengetahuan Anda",
               style: TextStyles.h6,
             ),
           ),

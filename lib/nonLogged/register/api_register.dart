@@ -11,7 +11,7 @@ class ApiRegister {
     String password,
     String role,
   ) async {
-    try{
+    try {
       String url = MainUrls.urlApi + 'api/customer/register';
       final payload = <String, String>{
         "name": name,
@@ -40,11 +40,9 @@ class ApiRegister {
 
         return data;
       }
-    }catch(e){
+    } catch (e) {
       rethrow;
     }
-
-
   }
 
   Future<dynamic> otpVerifikasi(
@@ -69,7 +67,15 @@ class ApiRegister {
         body: jsonEncode(payload),
       );
       print("respone api : " + response.body.toString());
-      return response.body;
+      if (response.statusCode == 200) {
+        Map<String, dynamic> data = jsonDecode(response.body);
+        print("respone data: " + data.toString());
+        return data;
+      } else {
+        Map<String, dynamic> data = jsonDecode(response.body);
+
+        return data;
+      }
     } catch (e) {
       rethrow;
     }

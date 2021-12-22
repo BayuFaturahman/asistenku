@@ -8,14 +8,17 @@ import 'package:AsistenKu/shared/constants/colors.dart';
 import 'package:AsistenKu/shared/constants/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class DashboardPage extends StatefulWidget {
+  final dataUser;
   final double lat;
   final double long;
-  const DashboardPage({Key? key, required this.lat, required this.long})
+  const DashboardPage(
+      {Key? key, required this.lat, required this.long, this.dataUser})
       : super(key: key);
 
   @override
@@ -25,15 +28,27 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   final ControllerDashboard cDashboard = Get.find<ControllerDashboard>();
   final ControllerUserLogin cUser = Get.find<ControllerUserLogin>();
+  String kecamatan = '';
+  String provinsi = '';
 
   @override
   void initState() {
     super.initState();
+    GetAddressFromLatLong(widget.lat, widget.long);
+  }
+
+  Future<void> GetAddressFromLatLong(double lat, double long) async {
+    List<Placemark> placemarks = await placemarkFromCoordinates(lat, long);
+    print(placemarks);
+    Placemark place = placemarks[0];
+    kecamatan = place.subLocality.toString();
+    provinsi = place.administrativeArea.toString();
+    print("kota : " + ('${place.locality}'));
+    // Address = '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
   }
 
   @override
   Widget build(BuildContext context) {
-    print("nama : " +cUser.nama.value);
     return GetBuilder<ControllerDashboard>(
       builder: (controller) {
         return Scaffold(
@@ -41,7 +56,8 @@ class _DashboardPageState extends State<DashboardPage> {
             child: IndexedStack(
               index: controller.tabIndex.value,
               children: [
-                HomePage(widget.lat, widget.long),
+                HomePage(widget.lat, widget.long, widget.dataUser,
+                    kecamatan + ',' + provinsi),
                 NewsPage(),
                 AlertsPage(),
                 AccountPage(),

@@ -16,7 +16,7 @@ class AppAssets {
   static const imageHeader = 'assets/images/bg_header.png';
   static const imageSuccess = 'assets/images/success.png';
   static const imageEror = 'assets/images/eror.png';
-
+  static const imagePromo50 = 'assets/images/promo50%.png';
   static const imageVerifikasi = 'assets/images/verifikasi.png';
 
   //icon
@@ -24,4 +24,12 @@ class AppAssets {
   static const icWorker = 'assets/icons/ic_worker.png';
   static const icHp = 'assets/icons/ic_hp.png';
   static const icEmail = 'assets/icons/ic_email.png';
+
+  //iconMenu
+  static const menuFullService = 'assets/icons/ic_full_service.png';
+  static const menuClean = 'assets/icons/ic_clean.png';
+  static const menuBabySister = 'assets/icons/ic_babysister.png';
+  static const menuCareviger = 'assets/icons/ic_cariviger.png';
+  static const menuNurseParent = 'assets/icons/ic_nurse_parent.png';
+  static const menuSemua = 'assets/icons/ic_see_all.png';
 }

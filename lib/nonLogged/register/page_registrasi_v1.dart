@@ -48,7 +48,8 @@ class PageRegistrasiV1State extends State<PageRegistrasiV1> {
             image: DecorationImage(
                 fit: BoxFit.cover,
                 image: AssetImage("assets/images/background.png"))),
-        child: Obx(()=>LoadingOverlay(
+        child: Obx(
+          () => LoadingOverlay(
             isLoading: cRegister.isLoading.value,
             color: Colors.transparent,
             child: SafeArea(
@@ -67,8 +68,8 @@ class PageRegistrasiV1State extends State<PageRegistrasiV1> {
                             child: const Icon(Icons.arrow_back)),
                         const Text(
                           'Regstrasi',
-                          style:
-                              TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                         const SizedBox()
                       ],
@@ -109,7 +110,6 @@ class PageRegistrasiV1State extends State<PageRegistrasiV1> {
                         hintText: "No.Handphone",
                         onChange: (val) {
                           _validateFormRegistarsi(setState);
-
                         },
                         validate: (value) {
                           if (!GetUtils.isPhoneNumber(value.toString())) {
@@ -125,7 +125,6 @@ class PageRegistrasiV1State extends State<PageRegistrasiV1> {
                         controller: email,
                         onChange: (val) {
                           _validateFormRegistarsi(setState);
-
                         },
                         validate: (value) {
                           if (!GetUtils.isEmail(value.toString())) {
@@ -158,7 +157,6 @@ class PageRegistrasiV1State extends State<PageRegistrasiV1> {
                       controller: kataSandi,
                       onChange: (val) {
                         _validateFormRegistarsi(setState);
-
                       },
                     ),
                   ),
@@ -182,19 +180,20 @@ class PageRegistrasiV1State extends State<PageRegistrasiV1> {
                       controller: kataSandiKonfirm,
                       onChange: (val) {
                         _validateFormRegistarsi(setState);
-
                       },
                     ),
                   ),
                   Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 20, horizontal: 45),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20, horizontal: 45),
                     child: ButtonPrimary(
                       onPressed: () {
-                        if(isValidRegis){
+                        if (isValidRegis) {
                           _submit();
-                        }else{
-                          showPopUpError(errorMessage: 'Mohon maap semua form registrasi harus diisi !');
+                        } else {
+                          showPopUpError(
+                              errorMessage:
+                                  'Mohon maap semua form registrasi harus diisi !');
                         }
                       },
                       height: 60,
@@ -217,37 +216,44 @@ class PageRegistrasiV1State extends State<PageRegistrasiV1> {
     );
   }
 
-   _submit() async {
-      var value = await cRegister.registerUser(
-          name: nama.text,
-          phone: noHp.text,
-          email: email.text,
-          password: kataSandiKonfirm.text,
-          role: 'customer');
-      print("VALUE DI UI : " + value.toString());
-      print("code : " + cRegister.statusCode.value.toString());
-      if (cRegister.statusCode.value == 200) {
-        showPopUp(
-            imageUri: AppAssets.imageSuccess,
-            imageSize: 80,
-            onPress: () => Get.to(() => const PageOtp()),
-            description:
-                'Kami akan mengirim code verifikasi melalui SMS anda ');
-      }else{
-        showPopUp(
-            imageUri: AppAssets.imageEror,
-            imageSize: 80,
-            onPress: () => Get.back(),
-            description:
-            cRegister.statusCode.value == '201' ? 'Mohon maaf anda email ini sudah terdaftar, Silahkan gunakan email lain' : 'Daftar akun tidak berhasil');
-      }
+  _submit() async {
+    var value = await cRegister.registerUser(
+        name: nama.text,
+        phone: noHp.text,
+        email: email.text,
+        password: kataSandiKonfirm.text,
+        role: 'customer');
+    print("VALUE DI UI : " + value.toString());
+    print("code : " + cRegister.statusCode.value.toString());
+    if (cRegister.statusCode.value == 200) {
+      showPopUp(
+          imageUri: AppAssets.imageSuccess,
+          imageSize: 80,
+          onPress: () => Get.to(() => PageOtp(
+                otp: cRegister.otp.value,
+                phone: cRegister.phoneCustumer.value,
+                token: cRegister.tokenOtp.value,
+              )),
+          description: 'Kami akan mengirim code verifikasi melalui SMS anda ');
+    } else {
+      showPopUp(
+          imageUri: AppAssets.imageEror,
+          imageSize: 80,
+          onPress: () => Get.back(),
+          description: cRegister.statusCode.value == 201
+              ? 'Mohon maaf email ini sudah terdaftar, Silahkan gunakan email lain'
+              : 'Daftar akun tidak berhasil');
+    }
   }
 
-
   void _validateFormRegistarsi(void Function(void Function()) setState) {
-    if (nama.text.isNotEmpty && noHp.text.isNotEmpty && email.text.isNotEmpty && kataSandiKonfirm.text.isNotEmpty) {
+    if (nama.text.isNotEmpty &&
+        noHp.text.isNotEmpty &&
+        email.text.isNotEmpty &&
+        kataSandiKonfirm.text.isNotEmpty) {
       setState(() => isValidRegis = true);
     } else {
       setState(() => isValidRegis = false);
     }
-  }}
+  }
+}

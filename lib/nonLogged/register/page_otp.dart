@@ -21,18 +21,54 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class PageOtp extends StatefulWidget {
-  const PageOtp({Key? key}) : super(key: key);
+  final String otp;
+  final String phone;
+  final String token;
+
+  const PageOtp(
+      {Key? key, required this.otp, required this.phone, required this.token})
+      : super(key: key);
 
   @override
   PageOtpState createState() => PageOtpState();
 }
 
 class PageOtpState extends State<PageOtp> {
-  TextEditingController otp = TextEditingController();
   ControllerRegister cRegister = ControllerRegister();
 
   @override
   Widget build(BuildContext context) {
+    print("otp : " + widget.otp);
+    print("phone : " + widget.phone);
+    print("token : " + widget.token);
+
+    final otp = TextEditingController(text: widget.otp);
+
+    _submit() async {
+      try {
+        var value = await cRegister.otpVerifikasi(
+            phone: widget.phone, otp: otp.text, token: widget.token);
+        print("VALUE DI UI : " + value.toString());
+        if (value['code'] == 200) {
+          showPopUp(
+              imageUri: AppAssets.imageSuccess,
+              imageSize: 80,
+              onPress: () {
+                Get.offAll(() => PageLoggin());
+              },
+              description: 'Verifikasi Berhasil');
+        }
+      } catch (e) {
+        showPopUp(
+            imageUri: AppAssets.imageEror,
+            imageSize: 80,
+            onPress: () {
+              Get.back();
+            },
+            description: 'Verfikasi Gagal !');
+      }
+    }
+
     return Scaffold(
       body: Container(
         width: Get.width,
@@ -150,28 +186,5 @@ class PageOtpState extends State<PageOtp> {
         ),
       ),
     );
-  }
-
-  _submit() async {
-    try {
-      final value = cRegister.otpVerifikasi(
-          phone: cRegister.phoneCustumer.value,
-          otp: otp.text,
-          token: cRegister.token.value);
-      print("VALUE DI UI : " + value.toString());
-      if (value != null) {
-        showPopUp(
-            imageUri: AppAssets.imageSuccess,
-            imageSize: 80,
-            onPress: () {
-               Get.offAll(()=>PageLoggin());
-            },
-            description: 'Verifikasi Berhasil');
-      }
-    } catch (e) {
-      showPopUpError(
-        errorMessage: e.toString(),
-      );
-    }
   }
 }

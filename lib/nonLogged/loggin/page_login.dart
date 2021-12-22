@@ -28,6 +28,7 @@ class PageLoggin extends StatefulWidget {
 class PageLogginState extends State<PageLoggin> {
   double myLat = -6.905977;
   double myLong = 107.613144;
+  String kec = '';
 
   TextEditingController email = TextEditingController();
   TextEditingController noHp = TextEditingController();
@@ -307,37 +308,43 @@ class PageLogginState extends State<PageLoggin> {
   }
 
   _submitEmail() async {
-     await cUser.loginApps(
+    var value = await cUser.loginApps(
         value: email.text, password: kataSandi.text, loginBy: 0);
 
     if (cUser.statusCode.value == 200) {
-      Get.offAll(() => DashboardPage(lat: myLat, long: myLong));
+      Get.offAll(() => DashboardPage(
+            lat: myLat,
+            long: myLong,
+            dataUser: value['data'],
+          ));
     } else {
       showPopUp(
           imageUri: AppAssets.imageEror,
           imageSize: 80,
           onPress: () => Get.back(),
-          description: cUser.statusCode.value ==201
+          description: cUser.statusCode.value == 201
               ? '201'
               : 'Email atau katasandi salah!');
     }
   }
 
   _submitPhoneNumber() async {
-     await cUser.loginApps(
-        value: '0'+ noHp.text,
-        password: kataSandi.text,
-        loginBy: 1);
+    var value = await cUser.loginApps(
+        value: '0' + noHp.text, password: kataSandi.text, loginBy: 1);
 
-    if (cUser.statusCode.value  == 200) {
+    if (cUser.statusCode.value == 200) {
       cUser.nama("Bayu");
-      Get.offAll(() => DashboardPage(lat: myLat, long: myLong));
+      Get.offAll(() => DashboardPage(
+            lat: myLat,
+            long: myLong,
+            dataUser: value['data'],
+          ));
     } else {
       showPopUp(
           imageUri: AppAssets.imageEror,
           imageSize: 80,
           onPress: () => Get.back(),
-          description: cUser.statusCode.value ==201
+          description: cUser.statusCode.value == 201
               ? '201'
               : 'Email atau katasandi salah!');
     }

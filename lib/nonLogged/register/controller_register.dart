@@ -5,10 +5,11 @@ class ControllerRegister extends GetxController {
   RxBool isLoading = false.obs;
   RxBool insitution = false.obs;
 
-  RxString token = "".obs;
-  RxString phoneCustumer = "".obs;
-  RxInt statusCode=0.obs;
+  RxString tokenOtp = "".obs;
+  RxString otp = "".obs;
 
+  RxString phoneCustumer = "".obs;
+  RxInt statusCode = 0.obs;
 
   Future<dynamic> registerUser(
       {required String name,
@@ -23,11 +24,17 @@ class ControllerRegister extends GetxController {
           .registerCustumer(name, phone, email, password, role);
       print("value di controller : " + result.toString());
       statusCode(result['code']);
-      token(result['otp']['token']);
-      phoneCustumer(result['data']['phoneNumber']);
 
-      isLoading(false);
-      return result;
+      if (result['code'] == 200) {
+        tokenOtp(result['otp']['token']);
+        phoneCustumer(result['data']['user']['phoneNumber']);
+        otp(result['otp']['otp']);
+        isLoading(false);
+        return result;
+      } else {
+        isLoading(false);
+        return result;
+      }
     } catch (e) {
       isLoading(false);
       rethrow;
@@ -44,7 +51,7 @@ class ControllerRegister extends GetxController {
       isLoading(true);
       final result = await ApiRegister()
           .otpVerifikasi(phone: phone, otp: otp, token: token);
-      print("value di controller : " + result.body.toString());
+      print("value di controller : " + result.toString());
       isLoading(false);
       return result;
     } catch (e) {
