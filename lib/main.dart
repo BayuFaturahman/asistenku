@@ -1,5 +1,7 @@
 import 'package:AsistenKu/app/app_pages.dart';
 import 'package:AsistenKu/logged/dashboard/controller_dashboard.dart';
+import 'package:AsistenKu/logged/help/controller_help.dart';
+import 'package:AsistenKu/logged/inbox/controller_inbox.dart';
 import 'package:AsistenKu/widget/pages/location_maps/controller_maps.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,6 +18,9 @@ void main() {
   Get.put(ControllerUserLogin());
   Get.put(ControllerHome());
   Get.put(AccountController());
+  Get.put(ControllerHelp());
+  Get.put(ControllerInbox());
+
   runApp(
     GetMaterialApp(
       title: "AsistenKu",

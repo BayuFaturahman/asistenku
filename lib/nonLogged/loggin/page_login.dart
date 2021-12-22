@@ -16,6 +16,7 @@ import 'package:AsistenKu/widget/other/show_dialog.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
@@ -28,7 +29,8 @@ class PageLoggin extends StatefulWidget {
 class PageLogginState extends State<PageLoggin> {
   double myLat = -6.905977;
   double myLong = 107.613144;
-  String kec = '';
+  String kecamatan = '';
+  String provinsi = '';
 
   TextEditingController email = TextEditingController();
   TextEditingController noHp = TextEditingController();
@@ -47,6 +49,17 @@ class PageLogginState extends State<PageLoggin> {
         desiredAccuracy: LocationAccuracy.best);
     myLat = position.latitude;
     myLong = position.longitude;
+    GetAddressFromLatLong(position.latitude, position.longitude);
+  }
+
+  Future<void> GetAddressFromLatLong(double lat, double long) async {
+    List<Placemark> placemarks = await placemarkFromCoordinates(lat, long);
+    print(placemarks);
+    Placemark place = placemarks[0];
+    kecamatan = place.subLocality.toString();
+    provinsi = place.administrativeArea.toString();
+    print("kota : " + ('${place.locality}'));
+    // Address = '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
   }
 
   @override
@@ -316,6 +329,7 @@ class PageLogginState extends State<PageLoggin> {
             lat: myLat,
             long: myLong,
             dataUser: value['data'],
+            addres: kecamatan + "," + provinsi,
           ));
     } else {
       showPopUp(
@@ -338,6 +352,7 @@ class PageLogginState extends State<PageLoggin> {
             lat: myLat,
             long: myLong,
             dataUser: value['data'],
+            addres: kecamatan + "," + provinsi,
           ));
     } else {
       showPopUp(

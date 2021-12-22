@@ -1,4 +1,5 @@
 import 'package:AsistenKu/logged/dashboard/controller_dashboard.dart';
+import 'package:AsistenKu/logged/help/controller_help.dart';
 import 'package:AsistenKu/logged/home/controller_home.dart';
 import 'package:AsistenKu/logged/profile/controller_profile.dart';
 import 'package:AsistenKu/nonLogged/loggin/controller_user_login.dart';
@@ -17,5 +18,6 @@ class ControllerBind extends Bindings {
     Get.put(ControllerUserLogin());
     Get.put(ControllerHome());
     Get.put(AccountController());
+    Get.put(ControllerHelp());
   }
 }

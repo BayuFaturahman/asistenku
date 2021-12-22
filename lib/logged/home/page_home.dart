@@ -3,45 +3,15 @@ import 'package:AsistenKu/logged/home/notifikasi/page_notifikasi.dart';
 import 'package:AsistenKu/logged/home/page_all_worker.dart';
 import 'package:AsistenKu/nonLogged/loggin/controller_user_login.dart';
 import 'package:AsistenKu/shared/constants/constants.dart';
+import 'package:AsistenKu/shared/constants/data.dart';
 import 'package:AsistenKu/shared/constants/styles.dart';
 import 'package:AsistenKu/widget/bottomsheet/bottomsheet_menu.dart';
+import 'package:AsistenKu/widget/button_primary.dart';
 import 'package:AsistenKu/widget/other/show_dialog.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
-final List<String> imgList = [
-  AppAssets.imagePromo50,
-  AppAssets.imagePromo50,
-  AppAssets.imagePromo50
-];
-
-List item = [
-  {"icon": AppAssets.menuFullService, "label": "Full Service"},
-  {"icon": AppAssets.menuClean, "label": "Cleaning"},
-  {"icon": AppAssets.menuBabySister, "label": "Babysitter"},
-  {'icon': AppAssets.menuCareviger, 'label': 'Caregiver'},
-  {'icon': AppAssets.menuNurseParent, 'label': 'Nurse Parent'},
-  {'icon': AppAssets.menuSemua, 'label': 'Semua'},
-];
-
-List itemBerita = [
-  {
-    "image": AppAssets.imageBerita1,
-    "title": "Pesona Bali 2021",
-    "child" : "Lorem ipsum dolor sit amet",
-    "desc":
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dictumst ut habitasse ante lacus purus dolor. Porttitor viverra sit quam sed eleifend eu vulputate auctor. At vitae et duis ornare viverra. Fames molestie a,   diam a consequat, diam amet, molestie suscipit. Cursus sit id vestibulum quisque id sodales viverra tristique dictum. Aliquam sapien vulputate sed eget cras hac faucibus curabitur. Id odio vitae ut integer.."
-  },
-  {
-    "image": AppAssets.imageBerita2,
-    "title": "EUFA Euro 2020",
-    "child" : "Lorem ipsum dolor sit amet",
-    "desc":
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dictumst ut habitasse ante lacus purus dolor. Porttitor viverra sit quam sed eleifend eu vulputate auctor. At vitae et duis ornare viverra. Fames molestie a,   diam a consequat, diam amet, molestie suscipit. Cursus sit id vestibulum quisque id sodales viverra tristique dictum. Aliquam sapien vulputate sed eget cras hac faucibus curabitur. Id odio vitae ut integer.."
-  },
-];
 
 class HomePage extends GetView<ControllerHome> {
   final double lat;
@@ -98,6 +68,7 @@ class HomePage extends GetView<ControllerHome> {
 
   @override
   Widget build(BuildContext context) {
+    print("alamat : " + addres);
     return Scaffold(
         body: SafeArea(
       child: ListView(
@@ -169,7 +140,7 @@ class HomePage extends GetView<ControllerHome> {
                           verticalSpace(10),
                           InkWell(
                             onTap: () {
-                              Get.to(()=>PageNotfikasi());
+                              Get.to(() => PageNotfikasi());
                             },
                             child: Image.asset(
                               AppAssets.icNotif,
@@ -244,29 +215,92 @@ class HomePage extends GetView<ControllerHome> {
                         crossAxisCount: 3,
                       ),
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: item.length,
+                      itemCount: menuitem.length,
                       itemBuilder: (BuildContext context, int index) {
                         return InkWell(
-                          onTap: (){
-                            switch(index){
+                          onTap: () {
+                            switch (index) {
                               case 0:
-                                showPopUpError(errorMessage: "Under Development");
+                                Get.dialog(Dialog(
+                                  backgroundColor: Colors.transparent,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        image: const DecorationImage(
+                                            image: AssetImage(
+                                                AppAssets.imageBgPermision),
+                                            fit: BoxFit.cover),
+                                        borderRadius: Corners.xlBorder,
+                                        color: Colors.white),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(Insets.lg),
+                                      child: SingleChildScrollView(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Image.asset(AppAssets.logoUtama,
+                                                width: 60, height: 60),
+                                            verticalSpace(33),
+                                            Image.asset(
+                                                AppAssets.imageDescPermision,
+                                                width: 305,
+                                                height: 273),
+                                            verticalSpace(35),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  "Hormat Kami,",
+                                                  style: TextStyles.body1
+                                                      .copyWith(
+                                                          color: AppColor
+                                                              .bodyColor
+                                                              .shade700),
+                                                ),
+                                              ],
+                                            ),
+                                            verticalSpace(30),
+                                            Row(
+                                              children: [
+                                                Text("Pengelola AsistenKu",
+                                                    style: TextStyles.body1
+                                                        .copyWith(
+                                                            color: AppColor
+                                                                .bodyColor
+                                                                .shade700)),
+                                              ],
+                                            ),
+                                            verticalSpace(42),
+                                            ButtonPrimary(
+                                              onPressed: () {
+                                                Get.back();
+                                              },
+                                              label: "Mengerti",
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ));
                                 break;
                               case 1:
-                                showPopUpError(errorMessage: "Under Development");
+                                showPopUpError(
+                                    errorMessage: "Under Development");
                                 break;
                               case 2:
-                                showPopUpError(errorMessage: "Under Development");
+                                showPopUpError(
+                                    errorMessage: "Under Development");
                                 break;
                               case 3:
-                                showPopUpError(errorMessage: "Under Development");
+                                showPopUpError(
+                                    errorMessage: "Under Development");
                                 break;
                               case 4:
-                                showPopUpError(errorMessage: "Under Development");
+                                showPopUpError(
+                                    errorMessage: "Under Development");
                                 break;
                               case 5:
-                              BottomSheetMenu(context).displayBottomSheet();
-                              break;
+                                BottomSheetMenu(context).displayBottomSheet();
+                                break;
                             }
                           },
                           child: Column(
@@ -283,13 +317,13 @@ class HomePage extends GetView<ControllerHome> {
                                   child: Column(
                                     children: [
                                       Image.asset(
-                                        item[index]['icon'],
+                                        menuitem[index]['icon'],
                                         width: 45,
                                         height: 45,
                                       ),
                                       verticalSpace(10),
                                       Text(
-                                        item[index]['label'],
+                                        menuitem[index]['label'],
                                         style: TextStyles.small1.copyWith(
                                             color: AppColor.bodyColor[400]),
                                       )
@@ -348,7 +382,7 @@ class HomePage extends GetView<ControllerHome> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                        itemBerita[index]['title'],
+                            itemBerita[index]['title'],
                             style: TextStyles.h6
                                 .copyWith(color: AppColor.whiteColor),
                           ),
@@ -363,7 +397,7 @@ class HomePage extends GetView<ControllerHome> {
                     ),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        image:  DecorationImage(
+                        image: DecorationImage(
                           image: AssetImage(
                             itemBerita[index]['image'],
                           ),

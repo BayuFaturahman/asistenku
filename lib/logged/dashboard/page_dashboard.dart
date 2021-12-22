@@ -1,9 +1,11 @@
 import 'package:AsistenKu/logged/dashboard/controller_dashboard.dart';
+import 'package:AsistenKu/logged/help/page_help.dart';
 import 'package:AsistenKu/logged/home/page_home.dart';
 import 'package:AsistenKu/logged/inbox/page_inbox.dart';
 import 'package:AsistenKu/logged/other/page_other.dart';
 import 'package:AsistenKu/logged/profile/page_profile.dart';
 import 'package:AsistenKu/nonLogged/loggin/controller_user_login.dart';
+import 'package:AsistenKu/shared/constants/assets.dart';
 import 'package:AsistenKu/shared/constants/colors.dart';
 import 'package:AsistenKu/shared/constants/styles.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,8 +19,14 @@ class DashboardPage extends StatefulWidget {
   final dataUser;
   final double lat;
   final double long;
+  final String addres;
+
   const DashboardPage(
-      {Key? key, required this.lat, required this.long, this.dataUser})
+      {Key? key,
+      required this.lat,
+      required this.long,
+      this.dataUser,
+      required this.addres})
       : super(key: key);
 
   @override
@@ -34,18 +42,18 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   void initState() {
     super.initState();
-    GetAddressFromLatLong(widget.lat, widget.long);
+    // GetAddressFromLatLong(widget.lat, widget.long);
   }
 
-  Future<void> GetAddressFromLatLong(double lat, double long) async {
-    List<Placemark> placemarks = await placemarkFromCoordinates(lat, long);
-    print(placemarks);
-    Placemark place = placemarks[0];
-    kecamatan = place.subLocality.toString();
-    provinsi = place.administrativeArea.toString();
-    print("kota : " + ('${place.locality}'));
-    // Address = '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
-  }
+  // Future<void> GetAddressFromLatLong(double lat, double long) async {
+  //   List<Placemark> placemarks = await placemarkFromCoordinates(lat, long);
+  //   print(placemarks);
+  //   Placemark place = placemarks[0];
+  //   kecamatan = place.subLocality.toString();
+  //   provinsi = place.administrativeArea.toString();
+  //   print("kota : " + ('${place.locality}'));
+  //   // Address = '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -56,10 +64,11 @@ class _DashboardPageState extends State<DashboardPage> {
             child: IndexedStack(
               index: controller.tabIndex.value,
               children: [
-                HomePage(widget.lat, widget.long, widget.dataUser,
-                    kecamatan + ',' + provinsi),
+                HomePage(
+                    widget.lat, widget.long, widget.dataUser, widget.addres),
                 NewsPage(),
-                AlertsPage(),
+                PageInbox(),
+                PageHelp(),
                 AccountPage(),
               ],
             ),
@@ -74,7 +83,9 @@ class _DashboardPageState extends State<DashboardPage> {
             elevation: 0,
             items: [
               _bottomNavigationBarItem(
-                image: "assets/icons/ic_home.png",
+                image: cDashboard.tabIndex.value == 0
+                    ? AppAssets.icHomeActive
+                    : AppAssets.icHomeNonActive,
                 title: Text(
                   'Home',
                   style: TextStyle(
@@ -87,7 +98,9 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
               ),
               _bottomNavigationBarItem(
-                image: "assets/icons/ic_order.png",
+                image: cDashboard.tabIndex.value == 1
+                    ? AppAssets.icOrderActive
+                    : AppAssets.icOrderNonActive,
                 title: Text(
                   'Order',
                   style: TextStyle(
@@ -100,7 +113,9 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
               ),
               _bottomNavigationBarItem(
-                image: "assets/icons/ic_inbox.png",
+                image: cDashboard.tabIndex.value == 2
+                    ? AppAssets.icInboxActive
+                    : AppAssets.icInboxNonActive,
                 title: Text(
                   'Inbox',
                   style: TextStyle(
@@ -113,14 +128,31 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
               ),
               _bottomNavigationBarItem(
-                image: "assets/icons/ic_person.png",
+                image: cDashboard.tabIndex.value == 3
+                    ? AppAssets.icHelpActive
+                    : AppAssets.icHelpNonActive,
                 title: Text(
-                  'Profile',
+                  'Help',
                   style: TextStyle(
                       color: cDashboard.tabIndex.value == 3
                           ? AppColor.successColor
                           : AppColor.bodyColor[600],
                       fontWeight: cDashboard.tabIndex.value == 3
+                          ? FontWeight.bold
+                          : FontWeight.normal),
+                ),
+              ),
+              _bottomNavigationBarItem(
+                image: cDashboard.tabIndex.value == 4
+                    ? AppAssets.icProfileActive
+                    : AppAssets.icProfileNonActive,
+                title: Text(
+                  'Profile',
+                  style: TextStyle(
+                      color: cDashboard.tabIndex.value == 4
+                          ? AppColor.successColor
+                          : AppColor.bodyColor[600],
+                      fontWeight: cDashboard.tabIndex.value == 4
                           ? FontWeight.bold
                           : FontWeight.normal),
                 ),
@@ -137,7 +169,7 @@ class _DashboardPageState extends State<DashboardPage> {
       icon: Image.asset(
         image,
         width: 20,
-        height: 20,
+        height: 30,
       ),
       title: title,
     );

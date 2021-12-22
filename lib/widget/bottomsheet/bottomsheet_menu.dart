@@ -1,4 +1,5 @@
 import 'package:AsistenKu/shared/constants/constants.dart';
+import 'package:AsistenKu/shared/constants/data.dart';
 import 'package:AsistenKu/widget/card/card_bottom_sheet.dart';
 import 'package:AsistenKu/widget/card/card_rounded.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class BottomSheetMenu {
-final BuildContext context;
+  final BuildContext context;
 
   BottomSheetMenu(this.context);
 
@@ -17,17 +18,17 @@ final BuildContext context;
       backgroundColor: Colors.transparent,
       builder: (context) => Container(
         height: MediaQuery.of(context).size.height * 0.90,
-        decoration: const  BoxDecoration(
+        decoration: const BoxDecoration(
           color: Colors.white,
-          borderRadius:  BorderRadius.only(
-            topLeft:  Radius.circular(25.0),
-            topRight:  Radius.circular(25.0),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(25.0),
+            topRight: Radius.circular(25.0),
           ),
         ),
-        child:Column(
+        child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 90,vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 90, vertical: 10),
               child: SizedBox(
                 height: 5,
                 child: CardRoundedBorder(
@@ -39,36 +40,46 @@ final BuildContext context;
                 ),
               ),
             ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 20),
-                child: Text("Semua",style: TextStyles.h5.copyWith(color: AppColor.bodyColor.shade700),),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: Text(
+                "Semua",
+                style:
+                    TextStyles.h5.copyWith(color: AppColor.bodyColor.shade700),
               ),
-                          Expanded(
-                            child: SingleChildScrollView(
-                              child: ListView.builder(
-                                shrinkWrap: true,
-                                  physics: const NeverScrollableScrollPhysics(),
-                                itemCount: 20,
-                                  itemBuilder: (context, i){
-                               return Padding(
-                                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                                 child: Container(
-                                   decoration: BoxDecoration(
-                                     border: Border(top: BorderSide(
-                                       color: AppColor.bodyColor.shade200,
-                                       width: 1.0
-                                     ))
-                                   ),
-                                   child: ListTile(
-                                      leading: Image.asset(AppAssets.menuFullService,width: 45,height: 45,),
-                                     title: const Text("Full Service"),
-                                     trailing: const Icon(Icons.arrow_forward_ios,size: 16,),
-                                    ),
-                                 ),
-                               );
-                              }),
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: menuitemAll.length,
+                    itemBuilder: (context, i) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  top: BorderSide(
+                                      color: AppColor.bodyColor.shade200,
+                                      width: 1.0))),
+                          child: ListTile(
+                            leading: Image.asset(
+                              menuitemAll[i]['icon'],
+                              width: 45,
+                              height: 45,
                             ),
-                          )
+                            title: Text(menuitemAll[i]['label']),
+                            trailing: const Icon(
+                              Icons.arrow_forward_ios,
+                              size: 16,
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
+              ),
+            )
           ],
         ),
       ),
@@ -107,7 +118,5 @@ final BuildContext context;
     //   },
     // ),
     //     ));
-
   }
-
-  }
+}
