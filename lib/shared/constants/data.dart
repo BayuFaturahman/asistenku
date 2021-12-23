@@ -3,9 +3,9 @@ import 'package:AsistenKu/shared/constants/assets.dart';
 //menuAwal
 List menuitem = [
   {"icon": AppAssets.menuFullService, "label": "Full Service"},
+  {'icon': AppAssets.menuIroningWash, 'label': 'Ironing&Wash'},
   {"icon": AppAssets.menuClean, "label": "Cleaning"},
   {"icon": AppAssets.menuBabySister, "label": "Babysitter"},
-  {'icon': AppAssets.menuCareviger, 'label': 'Caregiver'},
   {'icon': AppAssets.menuNurseParent, 'label': 'Nurse Parent'},
   {'icon': AppAssets.menuSemua, 'label': 'Semua'},
 ];
@@ -20,7 +20,7 @@ List menuitemAll = [
   {'icon': AppAssets.menuBoutique, 'label': 'Boutique'},
   {'icon': AppAssets.menuDriver, 'label': 'Driver'},
   {'icon': AppAssets.menuAward, 'label': 'Award'},
-  {'icon': AppAssets.menuIroningWash, 'label': 'Ironing & Wash'},
+  {'icon': AppAssets.menuIroningWash, 'label': 'Ironing&Wash'},
   {'icon': AppAssets.menuTopUp, 'label': 'Top Up'},
   {'icon': AppAssets.menuCafe, 'label': 'Cafe'},
 ];

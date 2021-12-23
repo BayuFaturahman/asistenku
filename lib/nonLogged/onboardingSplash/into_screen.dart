@@ -2,6 +2,7 @@ library flutteronboardingscreens;
 
 import 'package:AsistenKu/nonLogged/loggin/page_login.dart';
 import 'package:AsistenKu/nonLogged/onboardingSplash/onboarding_data.dart';
+import 'package:AsistenKu/shared/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -84,11 +85,8 @@ class IntroScreenState extends State<IntroScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   TextButton(
-                    child: Text(lastPage ? "" : "Skip",
-                        style: const TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 14.0)),
+                    child: Text(lastPage ? "" : "Lewati",
+                        style:TextStyles.subtitle2.copyWith(color: AppColor.bodyColor)),
                     onPressed: () => lastPage
                         ? null
                         : widget.skipPage(

@@ -7,9 +7,11 @@ class ControllerUserLogin extends GetxController {
   RxInt statusCode = 0.obs;
   RxString phoneCode ="".obs;
 
-  //data profile
   RxString nama ="".obs;
   RxString role ="".obs;
+
+  RxMap dataUserInfo={}.obs;
+  RxMap dataUser={}.obs;
 
   Future<dynamic> loginApps(
       {required String value,

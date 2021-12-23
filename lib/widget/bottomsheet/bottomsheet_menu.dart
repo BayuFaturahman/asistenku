@@ -119,4 +119,28 @@ class BottomSheetMenu {
     // ),
     //     ));
   }
+
+  openBottomSheet() {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              ListTile(
+                leading:const Icon(Icons.photo),
+                title:const Text("Foto"),
+                onTap:(){},
+              ),
+              ListTile(
+                leading:const Icon(Icons.camera),
+                title:const Text("Kamera"),
+                onTap:(){},
+              ),
+
+            ],
+          );
+        });
+  }
+
 }

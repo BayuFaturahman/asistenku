@@ -1,4 +1,6 @@
+import 'package:AsistenKu/logged/dashboard/controller_dashboard.dart';
 import 'package:AsistenKu/logged/dashboard/page_dashboard.dart';
+import 'package:AsistenKu/logged/profile/controller_profile.dart';
 import 'package:AsistenKu/nonLogged/loggin/controller_user_login.dart';
 import 'package:AsistenKu/nonLogged/lupaKataSandi/page_lupa_katasandi.dart';
 import 'package:AsistenKu/nonLogged/onboardingSplash/page_onboarding.dart';
@@ -35,8 +37,10 @@ class PageLogginState extends State<PageLoggin> {
   TextEditingController email = TextEditingController();
   TextEditingController noHp = TextEditingController();
   TextEditingController kataSandi = TextEditingController();
+  AccountController cProfile = AccountController();
 
-  ControllerUserLogin cUser = ControllerUserLogin();
+  final ControllerUserLogin cUser = Get.find<ControllerUserLogin>();
+  final ControllerDashboard cDashboard = Get.find<ControllerDashboard>();
 
   @override
   void initState() {
@@ -325,6 +329,8 @@ class PageLogginState extends State<PageLoggin> {
         value: email.text, password: kataSandi.text, loginBy: 0);
 
     if (cUser.statusCode.value == 200) {
+      cUser.dataUserInfo(value['data']['user']);
+      cUser.dataUser(value['data']);
       Get.offAll(() => DashboardPage(
             lat: myLat,
             long: myLong,
@@ -347,7 +353,8 @@ class PageLogginState extends State<PageLoggin> {
         value: '0' + noHp.text, password: kataSandi.text, loginBy: 1);
 
     if (cUser.statusCode.value == 200) {
-      cUser.nama("Bayu");
+      cUser.dataUserInfo(value['data']['user']);
+      cUser.dataUser(value['data']);
       Get.offAll(() => DashboardPage(
             lat: myLat,
             long: myLong,

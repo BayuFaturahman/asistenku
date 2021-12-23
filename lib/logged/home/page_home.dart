@@ -68,7 +68,8 @@ class HomePage extends GetView<ControllerHome> {
 
   @override
   Widget build(BuildContext context) {
-    print("alamat : " + addres);
+    // print("data dettail : "  + cUser.dataUserInfo.value.toString());
+    // print("data doang : "  + cUser.dataUser.value.toString());
     return Scaffold(
         body: SafeArea(
       child: ListView(
@@ -203,8 +204,8 @@ class HomePage extends GetView<ControllerHome> {
                       top: 330, left: 17, right: 17, bottom: 10),
                   child: Text(
                     "Kategori Layanan",
-                    style: TextStyles.body1
-                        .copyWith(color: AppColor.bodyColor.shade700),
+                    style: TextStyles.h6
+                        .copyWith(color: AppColor.bodyColor),
                   ),
                 ),
                 Padding(
@@ -324,8 +325,8 @@ class HomePage extends GetView<ControllerHome> {
                                       verticalSpace(10),
                                       Text(
                                         menuitem[index]['label'],
-                                        style: TextStyles.small1.copyWith(
-                                            color: AppColor.bodyColor[400]),
+                                        style: TextStyles.callout2.copyWith(
+                                            color: AppColor.bodyColor),
                                       )
                                     ],
                                   ),

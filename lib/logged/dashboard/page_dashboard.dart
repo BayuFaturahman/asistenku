@@ -8,6 +8,7 @@ import 'package:AsistenKu/nonLogged/loggin/controller_user_login.dart';
 import 'package:AsistenKu/shared/constants/assets.dart';
 import 'package:AsistenKu/shared/constants/colors.dart';
 import 'package:AsistenKu/shared/constants/styles.dart';
+import 'package:AsistenKu/shared/controller/controller_binding.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
@@ -17,6 +18,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class DashboardPage extends StatefulWidget {
   final dataUser;
+
   final double lat;
   final double long;
   final String addres;
@@ -45,123 +47,112 @@ class _DashboardPageState extends State<DashboardPage> {
     // GetAddressFromLatLong(widget.lat, widget.long);
   }
 
-  // Future<void> GetAddressFromLatLong(double lat, double long) async {
-  //   List<Placemark> placemarks = await placemarkFromCoordinates(lat, long);
-  //   print(placemarks);
-  //   Placemark place = placemarks[0];
-  //   kecamatan = place.subLocality.toString();
-  //   provinsi = place.administrativeArea.toString();
-  //   print("kota : " + ('${place.locality}'));
-  //   // Address = '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
-  // }
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ControllerDashboard>(
-      builder: (controller) {
-        return Scaffold(
-          body: SafeArea(
-            child: IndexedStack(
-              index: controller.tabIndex.value,
-              children: [
-                HomePage(
-                    widget.lat, widget.long, widget.dataUser, widget.addres),
-                NewsPage(),
-                PageInbox(),
-                PageHelp(),
-                AccountPage(),
+        return Obx(()=>Scaffold(
+            body: SafeArea(
+              child: IndexedStack(
+                index: cDashboard.tabIndex.value,
+                children: [
+                  HomePage(
+                      widget.lat, widget.long, widget.dataUser, widget.addres),
+                  NewsPage(),
+                  PageInbox(),
+                  PageHelp(),
+                  AccountPage(widget.dataUser),
+                ],
+              ),
+            ),
+            bottomNavigationBar: BottomNavigationBar(
+              onTap: cDashboard.changeTabIndex,
+              currentIndex: cDashboard.tabIndex.value,
+              showSelectedLabels: true,
+              showUnselectedLabels: true,
+              type: BottomNavigationBarType.fixed,
+              backgroundColor: const Color(0XFFEAF5FF),
+              elevation: 0,
+              items: [
+                _bottomNavigationBarItem(
+                  image: cDashboard.tabIndex.value == 0
+                      ? AppAssets.icHomeActive
+                      : AppAssets.icHomeNonActive,
+                  title: Text(
+                    'Home',
+                    style: TextStyle(
+                        color: cDashboard.tabIndex.value == 0
+                            ? AppColor.successColor
+                            : AppColor.bodyColor[600],
+                        fontWeight: cDashboard.tabIndex.value == 0
+                            ? FontWeight.bold
+                            : FontWeight.normal),
+                  ),
+                ),
+                _bottomNavigationBarItem(
+                  image: cDashboard.tabIndex.value == 1
+                      ? AppAssets.icOrderActive
+                      : AppAssets.icOrderNonActive,
+                  title: Text(
+                    'Order',
+                    style: TextStyle(
+                        color: cDashboard.tabIndex.value == 1
+                            ? AppColor.successColor
+                            : AppColor.bodyColor[600],
+                        fontWeight: cDashboard.tabIndex.value == 1
+                            ? FontWeight.bold
+                            : FontWeight.normal),
+                  ),
+                ),
+                _bottomNavigationBarItem(
+                  image: cDashboard.tabIndex.value == 2
+                      ? AppAssets.icInboxActive
+                      : AppAssets.icInboxNonActive,
+                  title: Text(
+                    'Inbox',
+                    style: TextStyle(
+                        color: cDashboard.tabIndex.value == 2
+                            ? AppColor.successColor
+                            : AppColor.bodyColor[600],
+                        fontWeight: cDashboard.tabIndex.value == 2
+                            ? FontWeight.bold
+                            : FontWeight.normal),
+                  ),
+                ),
+                _bottomNavigationBarItem(
+                  image: cDashboard.tabIndex.value == 3
+                      ? AppAssets.icHelpActive
+                      : AppAssets.icHelpNonActive,
+                  title: Text(
+                    'Help',
+                    style: TextStyle(
+                        color: cDashboard.tabIndex.value == 3
+                            ? AppColor.successColor
+                            : AppColor.bodyColor[600],
+                        fontWeight: cDashboard.tabIndex.value == 3
+                            ? FontWeight.bold
+                            : FontWeight.normal),
+                  ),
+                ),
+                _bottomNavigationBarItem(
+                  image: cDashboard.tabIndex.value == 4
+                      ? AppAssets.icProfileActive
+                      : AppAssets.icProfileNonActive,
+                  title: Text(
+                    'Profile',
+                    style: TextStyle(
+                        color: cDashboard.tabIndex.value == 4
+                            ? AppColor.successColor
+                            : AppColor.bodyColor[600],
+                        fontWeight: cDashboard.tabIndex.value == 4
+                            ? FontWeight.bold
+                            : FontWeight.normal),
+                  ),
+                )
               ],
             ),
           ),
-          bottomNavigationBar: BottomNavigationBar(
-            onTap: cDashboard.changeTabIndex,
-            currentIndex: cDashboard.tabIndex.value,
-            showSelectedLabels: true,
-            showUnselectedLabels: true,
-            type: BottomNavigationBarType.fixed,
-            backgroundColor: const Color(0XFFEAF5FF),
-            elevation: 0,
-            items: [
-              _bottomNavigationBarItem(
-                image: cDashboard.tabIndex.value == 0
-                    ? AppAssets.icHomeActive
-                    : AppAssets.icHomeNonActive,
-                title: Text(
-                  'Home',
-                  style: TextStyle(
-                      color: cDashboard.tabIndex.value == 0
-                          ? AppColor.successColor
-                          : AppColor.bodyColor[600],
-                      fontWeight: cDashboard.tabIndex.value == 0
-                          ? FontWeight.bold
-                          : FontWeight.normal),
-                ),
-              ),
-              _bottomNavigationBarItem(
-                image: cDashboard.tabIndex.value == 1
-                    ? AppAssets.icOrderActive
-                    : AppAssets.icOrderNonActive,
-                title: Text(
-                  'Order',
-                  style: TextStyle(
-                      color: cDashboard.tabIndex.value == 1
-                          ? AppColor.successColor
-                          : AppColor.bodyColor[600],
-                      fontWeight: cDashboard.tabIndex.value == 1
-                          ? FontWeight.bold
-                          : FontWeight.normal),
-                ),
-              ),
-              _bottomNavigationBarItem(
-                image: cDashboard.tabIndex.value == 2
-                    ? AppAssets.icInboxActive
-                    : AppAssets.icInboxNonActive,
-                title: Text(
-                  'Inbox',
-                  style: TextStyle(
-                      color: cDashboard.tabIndex.value == 2
-                          ? AppColor.successColor
-                          : AppColor.bodyColor[600],
-                      fontWeight: cDashboard.tabIndex.value == 2
-                          ? FontWeight.bold
-                          : FontWeight.normal),
-                ),
-              ),
-              _bottomNavigationBarItem(
-                image: cDashboard.tabIndex.value == 3
-                    ? AppAssets.icHelpActive
-                    : AppAssets.icHelpNonActive,
-                title: Text(
-                  'Help',
-                  style: TextStyle(
-                      color: cDashboard.tabIndex.value == 3
-                          ? AppColor.successColor
-                          : AppColor.bodyColor[600],
-                      fontWeight: cDashboard.tabIndex.value == 3
-                          ? FontWeight.bold
-                          : FontWeight.normal),
-                ),
-              ),
-              _bottomNavigationBarItem(
-                image: cDashboard.tabIndex.value == 4
-                    ? AppAssets.icProfileActive
-                    : AppAssets.icProfileNonActive,
-                title: Text(
-                  'Profile',
-                  style: TextStyle(
-                      color: cDashboard.tabIndex.value == 4
-                          ? AppColor.successColor
-                          : AppColor.bodyColor[600],
-                      fontWeight: cDashboard.tabIndex.value == 4
-                          ? FontWeight.bold
-                          : FontWeight.normal),
-                ),
-              )
-            ],
-          ),
         );
-      },
-    );
+
   }
 
   _bottomNavigationBarItem({required String image, required Widget title}) {

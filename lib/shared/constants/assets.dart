@@ -51,11 +51,11 @@ class AppAssets {
 
   //iconMenu
   static const menuFullService = 'assets/icons/ic_full_service.png';
-  static const menuClean = 'assets/icons/ic_clean.png';
-  static const menuBabySister = 'assets/icons/ic_babysister.png';
-  static const menuCareviger = 'assets/icons/ic_cariviger.png';
+  static const menuClean = 'assets/icons/ic_cleaner.png';
+  static const menuBabySister = 'assets/icons/ic_babysitter.png';
+  static const menuCareviger = 'assets/icons/ic_caregiver.png';
   static const menuNurseParent = 'assets/icons/ic_nurse_parent.png';
-  static const menuSemua = 'assets/icons/ic_see_all.png';
+  static const menuSemua = 'assets/icons/ic_all.png';
   static const menuBoutique = 'assets/icons/ic_boutique.png';
   static const menuDriver = 'assets/icons/ic_driver.png';
   static const menuAward = 'assets/icons/ic_award.png';
@@ -63,4 +63,11 @@ class AppAssets {
   static const menuShopkepper = 'assets/icons/ic_shopekepper.png';
   static const menuTopUp = 'assets/icons/ic_topup.png';
   static const menuCafe = 'assets/icons/ic_cafe.png';
+
+  //icon profile
+  static const iconRiwayat = 'assets/icons/ic_riwayat.png';
+  static const iconKeamanan = 'assets/icons/ic_keamanan.png';
+  static const iconSyarat = 'assets/icons/ic_syarat.png';
+  static const iconKeluar = 'assets/icons/ic_keluar.png';
+
 }

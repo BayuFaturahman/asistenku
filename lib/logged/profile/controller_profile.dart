@@ -1,9 +1,7 @@
 import 'package:get/get.dart';
 
 class AccountController extends GetxController {
-  var counter = 0.obs;
+  RxMap dataUserInfo={}.obs;
+  RxString test ="".obs;
 
-  void increaseCounter() {
-    counter.value += 1;
-  }
 }
