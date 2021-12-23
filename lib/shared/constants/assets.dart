@@ -5,6 +5,8 @@ class AppAssets {
   static const ilustrasi3 = 'assets/ilustrasi/ilustrasi_3.png';
   static const ilustrasiHp = 'assets/ilustrasi/ilustrasi_hp.png';
   static const ilustrasiVerifikasi = 'assets/ilustrasi/ilustrasi_hp.png';
+  static const ilustrasiMaintance = 'assets/ilustrasi/ilustrasi_maintance.jpg';
+
 
   //logo
   static const logoHand = 'assets/logo/hands.png';
@@ -63,6 +65,8 @@ class AppAssets {
   static const menuShopkepper = 'assets/icons/ic_shopekepper.png';
   static const menuTopUp = 'assets/icons/ic_topup.png';
   static const menuCafe = 'assets/icons/ic_cafe.png';
+  static const menuPeduli = 'assets/icons/ic_peduli.png';
+
 
   //icon profile
   static const iconRiwayat = 'assets/icons/ic_riwayat.png';

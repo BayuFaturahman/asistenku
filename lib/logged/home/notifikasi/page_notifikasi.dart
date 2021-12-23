@@ -1,3 +1,4 @@
+import 'package:AsistenKu/logged/home/notifikasi/page_detail_notif.dart';
 import 'package:AsistenKu/shared/constants/assets.dart';
 import 'package:AsistenKu/shared/constants/constants.dart';
 import 'package:AsistenKu/widget/pages/page_decoration_top.dart';
@@ -6,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PageNotfikasi extends StatefulWidget{
+  const PageNotfikasi({Key? key}) : super(key: key);
+
   @override
   State<PageNotfikasi> createState() => _PageNotfikasiState();
 
@@ -34,37 +37,49 @@ return PageDecorationTop(
         physics: const NeverScrollableScrollPhysics(),
       itemCount: 10,
         itemBuilder: (BuildContext context, int index){
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
-        child: Row(
-          children: [
-            Image.asset(AppAssets.logoUtama,height: 40,width: 40,),
-            horizontalSpace(10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Text("Order Berhasil",style: TextStyles.subtitle3,),
-                    horizontalSpace(5),
-                    Container(
-                      height: 10,
-                      width: 10,
-                      decoration:const  BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppColor.errorColor
-                      ),
+      return InkWell(
+        onTap: (){
+          Get.to(()=>const PageDetailNotif());
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
+          child: Row(
+            children: [
+              Image.asset(AppAssets.logoUtama,height: 40,width: 40,),
+              horizontalSpace(10),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: Get.width * 0.75,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Text("Order Berhasil",style: TextStyles.subtitle3,),
+                            horizontalSpace(10),
+                            Container(
+                              height: 10,
+                              width: 10,
+                              decoration:const  BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: AppColor.errorColor
+                              ),
+                            ),
+                          ],
+                        ),
+                        Text("2020-12-22 14:20:20",style: TextStyles.subtitle3,),
+
+                      ],
                     ),
-                    horizontalSpace(70),
+                  ),
+                  Text("Anda telah berhasil order layanan Cleaning",style: TextStyles.subtitle3.copyWith(color: AppColor.bodyColor.shade400),),
+                ],
+              ),
 
-                    Text("2020-12-22 14:20:20",style: TextStyles.subtitle3,),
-                  ],
-                ),
-                Text("Anda telah berhasil order layanan Cleaning",style: TextStyles.subtitle3.copyWith(color: AppColor.bodyColor.shade400),),
-              ],
-            ),
-
-          ],
+            ],
+          ),
         ),
       );
     }),

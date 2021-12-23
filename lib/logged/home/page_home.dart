@@ -77,7 +77,7 @@ class HomePage extends GetView<ControllerHome> {
         shrinkWrap: true,
         children: [
           SizedBox(
-            height: Get.height / 1.1,
+            height:1110,
             child: Stack(
               children: [
                 Image.asset(
@@ -196,18 +196,24 @@ class HomePage extends GetView<ControllerHome> {
                           }).toList(),
                         ),
                       ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 17,),
+                        child: Row(
+                          children: [
+                            Text(
+                              "Kategori Layanan",
+                              style: TextStyles.h6
+                                  .copyWith(color: AppColor.bodyColor),
+                            ),
+                          ],
+                        ),
+                      ),
+
+
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                      top: 330, left: 17, right: 17, bottom: 10),
-                  child: Text(
-                    "Kategori Layanan",
-                    style: TextStyles.h6
-                        .copyWith(color: AppColor.bodyColor),
-                  ),
-                ),
+
                 Padding(
                   padding: const EdgeInsets.only(top: 370, left: 17, right: 17),
                   child: GridView.builder(
@@ -284,20 +290,39 @@ class HomePage extends GetView<ControllerHome> {
                                 ));
                                 break;
                               case 1:
-                                showPopUpError(
-                                    errorMessage: "Under Development");
+                                showPopUp(
+                                    imageUri: AppAssets.menuIroningWash,
+                                    description: "Mohon maap fitur ini masih dalam tahap development",
+                                    onPress: (){
+                                      Get.back();
+                                    }
+                                );
                                 break;
                               case 2:
-                                showPopUpError(
-                                    errorMessage: "Under Development");
+                                showPopUp(
+                                    imageUri: AppAssets.menuClean,
+                                    description: "Mohon maap fitur ini masih dalam tahap development",
+                                    onPress: (){
+                                      Get.back();
+                                    }
+                                );
                                 break;
                               case 3:
-                                showPopUpError(
-                                    errorMessage: "Under Development");
+                                showPopUp(
+                                    imageUri: AppAssets.menuBabySister,
+                                    description: "Mohon maap fitur ini masih dalam tahap development",
+                                    onPress: (){
+                                      Get.back();
+                                    }
+                                );
                                 break;
                               case 4:
-                                showPopUpError(
-                                    errorMessage: "Under Development");
+                                showPopUp(
+                                    imageUri: AppAssets.menuNurseParent,
+                                    description: "Mohon maap fitur ini masih dalam tahap development",
+                                    onPress: (){
+                                      Get.back();
+                                    });
                                 break;
                               case 5:
                                 BottomSheetMenu(context).displayBottomSheet();
@@ -337,77 +362,133 @@ class HomePage extends GetView<ControllerHome> {
                         );
                       }),
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 600,left: 17,right: 17
+                  ),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: InkWell(
+                          onTap: (){
+                            showPopUp(
+                              imageUri: AppAssets.menuPeduli,
+                              description: "Mohon maap fitur ini masih dalam tahap development",
+                              onPress: (){
+                                Get.back();
+                              }
+                            );
 
-                // Padding(
-                //   padding: const EdgeInsets.only(top: 300),
-                //   child: Text("Your Location",style: TextStyles.h5,),
-                // )
+                          },
+                          child: Container(
+                            height:60,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: AppColor.primaryColor.withOpacity(0.3)
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Image.asset(AppAssets.menuPeduli,width: 30,height: 30,),
+                                      horizontalSpace(16),
+                                      Text(
+                                        "Check in PeduliLindungi",
+                                        style:
+                                        TextStyles.subtitle2.copyWith(color: AppColor.primaryColor),
+                                      )
+                                    ],
+                                  ),
+                                  Image.asset(AppAssets.icBack,color: AppColor.primaryColor,width: 10,)
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 17.0,vertical: 10
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Update Pengetahuan Anda",
+                              style: TextStyles.h6
+                                  .copyWith(color: AppColor.bodyColor.shade700),
+                            ),
+                            InkWell(
+                              onTap: (){
+                                showPopUp(
+                                    imageUri: AppAssets.imageEror,
+                                    description: "Mohon maap fitur ini masih dalam tahap development",
+                                    onPress: (){
+                                  Get.back();
+                                });
+                              },
+                              child: Text(
+                                "Lihat Lainya",
+                                style:
+                                    TextStyles.body1.copyWith(color: AppColor.primaryColor),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      verticalSpace(10),
+                      ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: 2,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Padding(
+                              padding: const EdgeInsets.only(left: 8, right: 8),
+                              child: Container(
+                                height: 180,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(20.0),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        itemBerita[index]['title'],
+                                        style: TextStyles.h6
+                                            .copyWith(color: AppColor.whiteColor),
+                                      ),
+                                      verticalSpace(2),
+                                      Text(
+                                        itemBerita[index]['child'],
+                                        style: TextStyles.body1
+                                            .copyWith(color: AppColor.whiteColor),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                        itemBerita[index]['image'],
+                                      ),
+                                      fit: BoxFit.cover,
+                                    )),
+                              ),
+                            );
+                          }),
+                    ],
+                  ),
+                ),
+
               ],
             ),
           ),
           verticalSpace(5),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 17.0,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Update Pengetahuan Anda",
-                  style: TextStyles.h6
-                      .copyWith(color: AppColor.bodyColor.shade700),
-                ),
-                Text(
-                  "Lihat Lainya",
-                  style:
-                      TextStyles.body1.copyWith(color: AppColor.primaryColor),
-                )
-              ],
-            ),
-          ),
-          verticalSpace(10),
-          ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: 2,
-              itemBuilder: (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.only(left: 8, right: 8),
-                  child: Container(
-                    height: 180,
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            itemBerita[index]['title'],
-                            style: TextStyles.h6
-                                .copyWith(color: AppColor.whiteColor),
-                          ),
-                          verticalSpace(2),
-                          Text(
-                            itemBerita[index]['child'],
-                            style: TextStyles.body1
-                                .copyWith(color: AppColor.whiteColor),
-                          )
-                        ],
-                      ),
-                    ),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        image: DecorationImage(
-                          image: AssetImage(
-                            itemBerita[index]['image'],
-                          ),
-                          fit: BoxFit.cover,
-                        )),
-                  ),
-                );
-              }),
-          verticalSpace(20),
+
         ],
       ),
     ));
