@@ -14,12 +14,14 @@ class NewsPage extends GetView<ControllerNews> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
-            padding:  EdgeInsets.all(8.0),
-            child: Container(
-              child: Image.asset(AppAssets.ilustrasiMaintance)
-            ),
+            padding: EdgeInsets.all(8.0),
+            child: Container(child: Image.asset(AppAssets.ilustrasiMaintance)),
           ),
-          Text("Mohon maaf fitur ini sedang dalam pembangunan !",style: TextStyles.subtitle1)
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("Mohon maaf fitur ini sedang dalam tahap development !",
+                style: TextStyles.subtitle2),
+          )
         ],
       ),
     );

@@ -7,7 +7,6 @@ class AppAssets {
   static const ilustrasiVerifikasi = 'assets/ilustrasi/ilustrasi_hp.png';
   static const ilustrasiMaintance = 'assets/ilustrasi/ilustrasi_maintance.jpg';
 
-
   //logo
   static const logoHand = 'assets/logo/hands.png';
   static const logoUtama = 'assets/logo/logo.png';
@@ -25,6 +24,7 @@ class AppAssets {
   static const imageCardHome = 'assets/images/card_home.png';
   static const imageBgPermision = 'assets/images/bg_permision.png';
   static const imageDescPermision = 'assets/images/desc_permision.png';
+  static const imageKeamanan = 'assets/images/keamanan.png';
 
   //berita
   static const imageBerita1 = 'assets/images/info1.png';
@@ -67,11 +67,9 @@ class AppAssets {
   static const menuCafe = 'assets/icons/ic_cafe.png';
   static const menuPeduli = 'assets/icons/ic_peduli.png';
 
-
   //icon profile
   static const iconRiwayat = 'assets/icons/ic_riwayat.png';
   static const iconKeamanan = 'assets/icons/ic_keamanan.png';
   static const iconSyarat = 'assets/icons/ic_syarat.png';
   static const iconKeluar = 'assets/icons/ic_keluar.png';
-
 }
